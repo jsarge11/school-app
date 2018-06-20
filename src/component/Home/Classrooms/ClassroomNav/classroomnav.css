@@ -1,0 +1,7 @@
+#classroom-nav {
+ height: 10%;
+ background-color: tan;
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+}

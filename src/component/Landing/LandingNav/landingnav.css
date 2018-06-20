@@ -1,0 +1,7 @@
+#landingnav-wrapper {
+ height: 20%;
+ background-color: darkgrey;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
