@@ -10,7 +10,7 @@ state = {
 render() {
    return (
      <div id="landing-wrapper">
-      <LandingNav/>
+      <LandingNav />
      </div>
     )
    }

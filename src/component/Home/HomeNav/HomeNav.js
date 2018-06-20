@@ -1,13 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { Link, withRouter } from 'react-router-dom'
 import './homenav.css'
 
 
-export default function HomeNav(props) {
+function HomeNav(props) {
     return (
        <div id="homenav-wrapper">
         <Link to="/"><li>Logo</li></Link>
-        <li>Welcome, Name</li>
+        <div>
+            <li id="logout-button" onClick={() => {
+                axios.get('/auth/logout').then(res => {
+                    props.history.push('/');
+                });
+            }}>Logout</li>
+            <li>Welcome,  </li>
+        </div>
        </div>
     )
 }
+export default withRouter(HomeNav)

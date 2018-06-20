@@ -7,6 +7,7 @@ import Points from './ClassroomComponents/Points/Points'
 import Students from './ClassroomComponents/Students/Students'
 import { Switch, Route } from 'react-router-dom'
 
+
 export default (
   <div id="classroom-wrapper">
     <HomeNav />

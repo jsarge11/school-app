@@ -5,3 +5,6 @@
     justify-content: space-between;
     align-items: center;
    }
+   #logout-button {
+       cursor: pointer;
+   }
