@@ -3,7 +3,8 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       massive = require('massive'),
       student = require('./controllers/student_controller'),
-      teacher = require('./controllers/teacher_controller')
+      teacher = require('./controllers/teacher_controller'),
+      classroom = require('./controllers/classroom_controller')
 require('dotenv').config()
 let app = express();
 
@@ -27,6 +28,11 @@ app.get('/auth/logout', teacher.logOut)
 
 // student management
 app.post('/newstudent', student.create);
+
+//classroom management
+app.get('/classrooms', classroom.read);
+app.post('/classrooms', classroom.create);
+app.delete('/classrooms', classroom.delete)
 
 massive(CONNECTION_STRING).then(dbInstance => {
       app.set('db', dbInstance);

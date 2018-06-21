@@ -46,7 +46,8 @@ create table teachers (
 );
 create table classrooms (
     clsr_id serial primary key,
-    t_id int references teachers(t_id)
+    t_id int references teachers(t_id),
+    name text
 );
 create table students (
     st_id serial primary key,

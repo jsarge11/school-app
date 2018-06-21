@@ -8,15 +8,16 @@ import Students from './ClassroomComponents/Students/Students'
 import { Switch, Route } from 'react-router-dom'
 
 
-export default (
-  <div id="classroom-wrapper">
-    <HomeNav />
-    <ClassroomNav />
-      <Switch>
-        <Route exact path="/classrooms/gradebook" component={Gradebook}/>
-        <Route path="/classrooms/points" component={Points}/>
-        <Route path="/classrooms/assessments" component={Assessments}/>
-        <Route path="/classrooms/students" component={Students}/>
-      </Switch>
-  </div>
+export default function ClassRoutes(props) {
+  return (  <div id="classroom-wrapper">
+      <HomeNav user={props.user}/>
+      <ClassroomNav />
+        <Switch>
+          <Route exact path="/classrooms/gradebook" component={Gradebook}/>
+          <Route path="/classrooms/points" component={Points}/>
+          <Route path="/classrooms/assessments" component={Assessments}/>
+          <Route path="/classrooms/students" component={Students}/>
+        </Switch>
+    </div>
 )
+}

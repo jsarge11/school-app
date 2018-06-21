@@ -5,6 +5,9 @@ import './homenav.css'
 
 
 function HomeNav(props) {
+    // if (!props.user) {
+    //     props.history.push('/');
+    // }
     return (
        <div id="homenav-wrapper">
         <Link to="/"><li>Logo</li></Link>
@@ -14,7 +17,7 @@ function HomeNav(props) {
                     props.history.push('/');
                 });
             }}>Logout</li>
-            <li>Welcome,  </li>
+            <li>Welcome, {props.user.first_name} </li>
         </div>
        </div>
     )
