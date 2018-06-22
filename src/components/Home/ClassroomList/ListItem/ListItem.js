@@ -1,7 +1,10 @@
 import React, { Component } from 'react' 
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { setClassroom } from '../../../../ducks/reducer'
 import './listitem.css'
 
-export default class ListItem extends Component {
+class ListItem extends Component {
 state = {
  classroomEdit: false,
 }
@@ -12,7 +15,10 @@ render() {
     <div className="classroom-list-item">
     {!this.state.classroomEdit ?
        <div className="name-section">
-           <p> Name: {classroom.name} &nbsp; </p>
+           <p> Name: </p> &nbsp;
+           <Link onClick={()=>this.props.setClassroom(classroom.clsr_id)} to={`/classrooms/gradebook`}>{classroom.name} 
+           </Link>
+           &nbsp;
            <p id="edit" onClick={()=>this.setState({classroomEdit: true})}>&#9998;</p>
        </div>
        :
@@ -33,3 +39,9 @@ render() {
     )
    }
   }
+function mapStateToProps(state) {
+    return {
+        state
+    }
+}
+export default connect(mapStateToProps, { setClassroom })(ListItem)

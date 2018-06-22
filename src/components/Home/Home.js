@@ -21,7 +21,6 @@ render() {
    return (
      <div id="home-wrapper">
       <HomeNav user={this.state.user} />
-      <Link to="/classrooms/gradebook">Classrooms</Link>
       <ClassroomList user={this.state.user} />
     </div>
     )
