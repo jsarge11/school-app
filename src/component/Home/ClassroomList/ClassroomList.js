@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './classroomlist.css'
 import axios from 'axios';
+import ListItem from './ListItem/ListItem'
 
 
 export default class ClassroomList extends Component {
@@ -8,7 +9,6 @@ export default class ClassroomList extends Component {
 state = {
     classroomName: '',
     classroomAdd: false,
-    classroomEdit: false,
     classrooms: [],
     user: {}
 }
@@ -29,11 +29,14 @@ addClassroom = () => {
     let { classroomName } = this.state;
     this.setState({ classroomAdd: false, classroomName: '' })
     axios.post('/classrooms?id=' + this.props.user.t_id, {classroomName: classroomName}).then(res => {
-        this.setState({ classrooms: res.data })
+        this.setState({ classrooms: res.data });
     }).catch(error => console.log(error))
 }
-editClassroom = () => {
-
+editClassroom = (clsr_id) => {
+    let { newName } = this.state;
+    axios.put('/classrooms?id=' + clsr_id, {text: newName }).then(res => {
+        this.setState({ classrooms: res.data });
+    })
 }
 
 deleteClassroom = (clsr_id) => {
@@ -42,28 +45,18 @@ deleteClassroom = (clsr_id) => {
     }).catch(error => console.log(error))
 }
 
+compare = (a, b) => {
+    return a.clsr_id - b.clsr_id;
+}
+
 render() {
-    let classrooms = this.state.classrooms.map((item, i) => {
-        console.log(item.clsr_id)
+    let classrooms = this.state.classrooms.sort(this.compare).map((item, i) => {
      return (
-       <div className="classroom-list-item" key={item+i}>
-             {!this.state.classroomEdit ?
-                <div className="name-section">
-                    <p> Name: {item.name} &nbsp; </p>
-                    <p id="edit" onClick={()=>this.setState({classroomEdit: true})}>&#9998;</p>
-                </div>
-                :
-                <div className="name-section">
-                    <p> Name: </p>
-                    <input type="text" onChange={(e) => this.handleChange("new_name", e)}/>
-                    <input type="submit" value="Submit"/>
-                    <p> X </p>
-                </div>
-            }
-
-
-         <p id="delete" onClick={()=>this.deleteClassroom(item.clsr_id)}> &#128465;</p>
-       </div>
+       <ListItem key={item.clsr_id}
+                 classroom={item} 
+                 handleChange={this.handleChange}
+                 editClassroom={this.editClassroom}
+                 deleteClassroom={this.deleteClassroom} />
      )
    })
         return (

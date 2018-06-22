@@ -1,7 +1,6 @@
 module.exports = {
     read: (req, res) => {
         let db = req.app.get('db');
-        console.log(req.query.id)
         db.classrooms.read_classrooms([req.query.id]).then(classrooms => {
           res.status(200).send(classrooms);
         })
@@ -14,7 +13,9 @@ module.exports = {
     },
     update: (req, res) => {
         let db = req.app.get('db');
-        db.classrooms.update_classroom_name([req.query.id]).then()
+        db.classrooms.update_classroom_name([req.body.text, req.query.id]).then(classrooms => {
+            res.status(200).send(classrooms);
+        })
     },
     delete: (req, res) => {
         let db = req.app.get('db');

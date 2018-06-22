@@ -31,6 +31,7 @@ app.post('/newstudent', student.create);
 
 //classroom management
 app.get('/classrooms', classroom.read);
+app.put('/classrooms', classroom.update);
 app.post('/classrooms', classroom.create);
 app.delete('/classrooms', classroom.delete)
 
