@@ -27,7 +27,7 @@ app.post('/auth/teacher', teacher.addToSession)
 app.get('/auth/logout', teacher.logOut)
 
 // student management
-app.post('/newstudent', student.create);
+app.post('/students', student.create);
 
 //classroom management
 app.get('/classrooms', classroom.read);

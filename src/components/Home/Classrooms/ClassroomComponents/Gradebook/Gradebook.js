@@ -8,7 +8,7 @@ class Gradebook extends Component {
 render() {
         return (
            <div id="gradebook-wrapper">
-            Gradebook for classroom {this.props.classroom.name}
+            {/* Gradebook for classroom {this.props.classroom.name} */}
            </div>
         )
     }

@@ -7,7 +7,7 @@ class Points extends Component {
 render() {
         return (
            <div id="points-wrapper">
-            Points for classroom {this.props.classroom.name}
+            {/* Points for classroom {this.props.classroom.name} */}
            </div>
         )
     }
