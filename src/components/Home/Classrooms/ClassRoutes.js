@@ -8,9 +8,8 @@ import Students from './ClassroomComponents/Students/Students'
 import { Switch, Route } from 'react-router-dom'
 
 
-export default function ClassRoutes(props) {
-  
-  return (  
+function ClassRoutes(props) {
+  return (
   <div id="classroom-wrapper">
       <HomeNav user={props.user}/>
       <ClassroomNav />
@@ -23,3 +22,5 @@ export default function ClassRoutes(props) {
     </div>
 )
 }
+
+export default ClassRoutes

@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
 import './students.css'
 
 
-export default class Students extends Component {
+class Students extends Component {
 
 state = {
     addStudent: false,
@@ -20,7 +21,7 @@ handleChange = (field, e) => {
 render() {
         return (
            <div id="student-wrapper">
-            Students
+            Students for classroom {this.props.classroom.name}
             {this.state.addStudent ?
             <div>
                 <input type="text" placeholder="first_name" onChange={(e)=>this.handleChange("first_name", e)} value={this.state.first_name}/>
@@ -34,3 +35,11 @@ render() {
         )
     }
 }
+function mapStateToProps(state) {
+    let {classroomList, classroom} = state;
+    return {
+        classroom,
+        classroomList
+    }
+}
+export default connect(mapStateToProps)(Students)

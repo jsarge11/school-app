@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import HomeNav from './HomeNav/HomeNav'
-import ClassroomList from './ClassroomList/ClassroomList'
+import ClassroomList from './Classrooms/ClassroomList/ClassroomList'
 import axios from 'axios'
 import './home.css'
 
