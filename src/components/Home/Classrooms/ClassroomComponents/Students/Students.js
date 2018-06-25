@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import AddStudent from './AddStudent/AddStudent'
+import StudentList from './StudentList/StudentList'
+import { setStudentList } from '../../../../../ducks/reducer'
 import './students.css'
 import axios from 'axios';
 
@@ -32,12 +34,13 @@ addStudent = () => {
             clsr_id: this.props.classroom.clsr_id
         })
     }
+    //making state null
     for(let key in this.state) {
         this.setState({ [`${key}`] : '' })
     }
 
     axios.post('/students', newStudent).then(res => {
-        console.log(res.data);
+        this.props.setStudentList(res.data);
     })
 }
 handleChange = (field, e) => {
@@ -65,15 +68,16 @@ render() {
                 />
             :
             <button onClick={()=>this.setState({ addStudent: true })}>Add Student</button>}
+            <StudentList />
            </div>
         )
     }
 }
 function mapStateToProps(state) {
-    let {classroomList, classroom} = state;
+    let {classroomList, classroom } = state;
     return {
         classroom,
         classroomList
     }
 }
-export default connect(mapStateToProps)(Students)
+export default connect(mapStateToProps, { setStudentList })(Students)

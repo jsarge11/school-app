@@ -1,14 +1,17 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import StudentList from '../Students/StudentList/StudentList'
 import './gradebook.css'
 
 
 class Gradebook extends Component {
 
+
 render() {
         return (
            <div id="gradebook-wrapper">
-            {/* Gradebook for classroom {this.props.classroom.name} */}
+            Classroom: {this.props.classroom.name}
+            <StudentList />
            </div>
         )
     }
