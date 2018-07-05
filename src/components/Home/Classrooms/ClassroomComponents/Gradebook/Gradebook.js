@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import StudentList from '../Students/StudentList/StudentList'
+import { withRouter, Redirect } from 'react-router-dom'
 import './gradebook.css'
 
 
@@ -8,12 +9,17 @@ class Gradebook extends Component {
 
 
 render() {
-        return (
-           <div id="gradebook-wrapper">
-            Classroom: {this.props.classroom.name}
-            <StudentList />
-           </div>
-        )
+    if (!this.props.classroom) {
+        return <Redirect push to="/home" />
+    }
+    else {
+            return (
+            <div id="gradebook-wrapper">
+                Classroom: {this.props.classroom.name}
+                <StudentList />
+            </div>
+            )
+        }
     }
 }
 function mapStateToProps(state) {
@@ -23,4 +29,4 @@ function mapStateToProps(state) {
         classroomList
     }
 }
-export default connect(mapStateToProps)(Gradebook)
+export default withRouter(connect(mapStateToProps)(Gradebook))

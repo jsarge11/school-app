@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ClassRoutes from './ClassRoutes'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setStudentList } from '../../../ducks/reducer'
 import axios from 'axios'
@@ -11,23 +11,28 @@ class Classrooms extends Component {
     user: {}
   }
   componentDidMount() {
-    console.log('here');
-
-    axios.get('/auth/teacher').then(res => {
-      this.setState({ user: res.data})
-    }).catch(() => this.props.history.push('/'))
-
-    axios.get('/students?id=' + this.props.classroom.clsr_id).then(res => { 
-        this.props.setStudentList(res.data);
-    })
+    if (this.props.classroom) {
+      axios.get('/auth/teacher').then(res => {
+        this.setState({ user: res.data})
+      }).catch(() => this.props.history.push('/'))
+  
+      axios.get('/students?id=' + this.props.classroom.clsr_id).then(res => { 
+          this.props.setStudentList(res.data);
+      })
+    }
   }
    render() {
 
-      return (
-      <div id="classroom-wrapper">
-        <ClassRoutes user={this.state.user}/>
-      </div>
-      )
+    if (!this.props.classroom) {
+      return <Redirect push to="/home" />
+    }
+    else {
+        return (
+        <div id="classroom-wrapper">
+          <ClassRoutes user={this.state.user}/>
+        </div>
+        )
+      }
     }
   }
   function mapStateToProps(state) {

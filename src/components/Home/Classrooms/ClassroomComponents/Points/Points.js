@@ -1,15 +1,21 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import { withRouter, Redirect } from 'react-router-dom'
 import './points.css'
 
 
 class Points extends Component {
 render() {
-        return (
-           <div id="points-wrapper">
-            {/* Points for classroom {this.props.classroom.name} */}
-           </div>
-        )
+    if (!this.props.classroom) {
+        return <Redirect push to="/home" />
+    }
+    else {
+            return (
+            <div id="points-wrapper">
+                {/* Points for classroom {this.props.classroom.name} */}
+            </div>
+            )
+        }
     }
 }
 function mapStateToProps(state) {
@@ -19,4 +25,4 @@ function mapStateToProps(state) {
         classroomList
     }
 }
-export default connect(mapStateToProps)(Points)
+export default withRouter(connect(mapStateToProps)(Points))
