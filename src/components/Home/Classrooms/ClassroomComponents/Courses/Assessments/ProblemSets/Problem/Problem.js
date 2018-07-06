@@ -1,8 +1,8 @@
-import React from 'react' 
-import './assessment.css'
+import React from 'react'
+import './problem.css'
 
-export default class Assessment extends React.Component {
- 
+export default class Problem extends React.Component {
+
   state = {
     answer: 0,
     user_answer: ''
@@ -47,8 +47,8 @@ export default class Assessment extends React.Component {
   }
 
   render() {
-   return ( 
-      <div id="outer-assessment-creator"> 
+   return (
+      <div id="outer-problem-creator">
         <div id="first-number">{this.props.first_number}</div>
           <div id="second-number">
             <span>
