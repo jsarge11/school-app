@@ -4,7 +4,6 @@ import './studentlist.css'
 
 
 function StudentList(props) {
- console.log(props);
  let students = props.studentList.map(student => {
   return (
    <div key={student.st_id} className="student-list-item">
@@ -18,7 +17,7 @@ function StudentList(props) {
  })
 
  return (
-   <div id="student-list-wrapper"> 
+   <div id="student-list-wrapper">
     {students}
    </div>
   )

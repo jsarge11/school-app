@@ -3,9 +3,11 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       massive = require('massive'),
       student = require('./controllers/student_controller'),
-      teacher = require('./controllers/teacher_controller'),
-      classroom = require('./controllers/classroom_controller')
+      user = require('./controllers/user_controller'),
+      classroom = require('./controllers/classroom_controller'),
+      teacher = require('./controllers/teacher_controller')
 require('dotenv').config()
+
 let app = express();
 
 app.use(bodyParser.json())
@@ -21,20 +23,24 @@ app.use(session({
       secret: SECRET_SESSION
 }))
 
-// teacher management
-app.get('/auth/teacher', teacher.read);
-app.post('/auth/teacher', teacher.addToSession)
-app.get('/auth/logout', teacher.logOut)
+// user management
+app.get('/auth/user', user.read);
+app.post('/auth/user', user.addToSession);
+app.get('/auth/logout', user.logOut);
 
 // student management
-app.get('/students', student.read)
+app.get('/students', student.read);
 app.post('/students', student.create);
 
 //classroom management
 app.get('/classrooms', classroom.read);
 app.put('/classrooms', classroom.update);
 app.post('/classrooms', classroom.create);
-app.delete('/classrooms', classroom.delete)
+app.delete('/classrooms', classroom.delete);
+
+//teacher management
+app.post('/teachers', teacher.create);
+app.get('/teachers', teacher.read);
 
 massive(CONNECTION_STRING).then(dbInstance => {
       app.set('db', dbInstance);

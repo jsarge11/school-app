@@ -1,39 +1,15 @@
 module.exports = {
     read: (req, res) => {
         let db = req.app.get('db');
-        //reading password
-        if (req.query.email) {
-            db.teachers.get_teacher_hash([req.query.email]).then(hash_arr => {
-                if (hash_arr[0]) {
-                    res.status(200).send(hash_arr[0].hash);
-                }
-                else {
-                    res.status(404).send('No user found with that email.');
-                }
-            }).catch(error => res.status(500).send(error))
-        }
-        //reading session if no email
-        else {
-            if(req.session.user) {
-                res.status(200).send(req.session.user)
-            }
-            else {
-                res.status(401).send();
-            }
-        }
-    },
-    addToSession: (req, res) => {
-        let db = req.app.get('db');
-        db.teachers.get_teacher_info([req.query.email]).then(user => {
-            if (user[0]) {
-                req.session.user = user[0];
-                res.status(200).send(user[0]);
-            }
+        db.teachers.get_teachers(req.query.id).then(teachers => {
+            res.status(200).send(teachers);
         })
-
     },
-    logOut: (req, res) => {
-        req.session.destroy();
-        res.status(200).send('Successfully Logged Out');
+    create: (req, res) => {
+       let { first_name, last_name, gender, school_id, admin_privileges, principle, email, hash } = req.body;
+       let db = req.app.get('db');
+       db.teachers.create_teacher(first_name, last_name, gender, school_id, admin_privileges, principle, email, hash).then(teachers => {
+           res.status(200).send(teachers);
+       })
     }
 }

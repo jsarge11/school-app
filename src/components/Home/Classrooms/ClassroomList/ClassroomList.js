@@ -11,7 +11,6 @@ class ClassroomList extends Component {
 state = {
     classroomName: '',
     classroomAdd: false,
-    user: {}
 }
 
 componentDidUpdate(prevProps) {
@@ -35,13 +34,13 @@ addClassroom = () => {
 }
 editClassroom = (clsr_id) => {
     let { newName } = this.state;
-    axios.put('/classrooms?id=' + clsr_id, {text: newName }).then(res => {
+    axios.put('/classrooms?id=' + clsr_id + '&t_id=' + this.props.user.t_id, {text: newName }).then(res => {
         this.props.setClassroomList(res.data);
     })
 }
 
 deleteClassroom = (clsr_id) => {
-    axios.delete('/classrooms?id=' + clsr_id).then(res => {
+    axios.delete('/classrooms?id=' + clsr_id + '&t_id=' + this.props.user.t_id).then(res => {
         this.props.setClassroomList(res.data);
     }).catch(error => console.log(error))
 }

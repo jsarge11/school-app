@@ -15,7 +15,7 @@ render() {
     <div className="classroom-list-item">
     {!this.state.classroomEdit ?
        <div className="name-section">
-           <p> Name: </p> &nbsp;
+           <p> Classroom Name: </p> &nbsp;
            <Link onClick={()=>this.props.setClassroom(classroom)} to={`/classrooms/gradebook`}>{classroom.name}
            </Link>
            &nbsp;
@@ -23,7 +23,7 @@ render() {
        </div>
        :
        <div className="name-section">
-           <p> Name: </p>
+           <p> Classroom Name: </p>
            <input type="text" onChange={(e) => this.props.handleChange("newName", e)}/>
            <input type="submit" value="Submit"
              onClick={()=>{

@@ -13,14 +13,13 @@ module.exports = {
     },
     update: (req, res) => {
         let db = req.app.get('db');
-        db.classrooms.update_classroom_name([req.body.text, req.query.id]).then(classrooms => {
+        db.classrooms.update_classroom_name([req.body.text, req.query.id, +req.query.t_id]).then(classrooms => {
             res.status(200).send(classrooms);
         })
     },
     delete: (req, res) => {
         let db = req.app.get('db');
-
-        db.classrooms.delete_classroom([req.query.id]).then(classrooms => {
+        db.classrooms.delete_classroom([req.query.id, +req.query.t_id]).then(classrooms => {
             res.status(200).send(classrooms);
         }).catch(error => res.status(500).send(error));
 

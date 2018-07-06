@@ -12,11 +12,11 @@ class Classrooms extends Component {
   }
   componentDidMount() {
     if (this.props.classroom) {
-      axios.get('/auth/teacher').then(res => {
+      axios.get('/auth/user').then(res => {
         this.setState({ user: res.data})
       }).catch(() => this.props.history.push('/'))
-  
-      axios.get('/students?id=' + this.props.classroom.clsr_id).then(res => { 
+
+      axios.get('/students?id=' + this.props.classroom.clsr_id).then(res => {
           this.props.setStudentList(res.data);
       })
     }
