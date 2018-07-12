@@ -29,6 +29,7 @@ app.use(session({
 app.get('/auth/user', user.read);
 app.post('/auth/user', user.addToSession);
 app.get('/auth/logout', user.logOut);
+app.post('/auth/students', user.loginStudent)
 
 // student management
 app.get('/students', student.read);

@@ -35,5 +35,28 @@ module.exports = {
     logOut: (req, res) => {
         req.session.destroy();
         res.status(200).send('Successfully Logged Out');
+    },
+    loginStudent: (req, res) => {
+
+        let db = req.app.get('db');
+        let { name, PIN } = req.body;
+
+        console.log(name, PIN);
+
+        db.students.login_student([req.body.name]).then(student => {
+            console.log(student);
+            if (student[0]) {
+                if (student[0].pin === req.body.PIN) {
+                    res.status(200).send('Success.');
+                }
+                else {
+                    res.status(404).send('Login invalid.');
+                }
+            }
+            else {
+                res.status(404).send('User not found.');
+            }
+
+        })
     }
 }
