@@ -39,34 +39,27 @@ module.exports = {
     loginStudent: (req, res) => {
 
         let db = req.app.get('db');
-        let { name, PIN } = req.body;
+        let { id, PIN } = req.body;
 
-        console.log(name, PIN);
-
-        db.students.login_student([req.body.name]).then(student => {
-            console.log(student);
-            if (student[0]) {
-                if (student[0].pin === req.body.PIN) {
-                    res.status(200).send('Success.');
-                }
-                else {
-                    res.status(404).send('Login invalid.');
-                }
+        db.students.login_student([id]).then(student => {
+            console.log(typeof student[0].pin, typeof PIN);
+            if (student[0].pin === PIN) {
+                res.status(200).send(student);
             }
             else {
-                res.status(404).send('User not found.');
+                res.status(404).send('PIN invalid.');
             }
 
         })
     },
     checkClassroom: (req, res) => {
         let db = req.app.get('db');
-        let { pin, initials } = req.body;
-        console.log(pin, initials);
+        let { login, pin } = req.body;
+        console.log(pin, login);
         let found = false;
-        db.teachers.get_all_teachers().then(teachers => {
-            teachers.forEach(item => {
-                if (item.initials === initials) {
+        db.classrooms.get_all_classrooms().then(classrooms => {
+            classrooms.forEach(item => {
+                if (item.login === login) {
                     found = true;
                     if (item.pin.toString() === pin) {
                         res.status(200).send(item);
@@ -77,7 +70,7 @@ module.exports = {
                 }
             })
             if (!found) {
-                res.status(404).send('Teacher not found.');
+                res.status(404).send('Classroom not found.');
             }
         })
     }

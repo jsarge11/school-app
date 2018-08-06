@@ -1,2 +1,2 @@
 select * from students
-where username = $1;
+where st_id = $1;
