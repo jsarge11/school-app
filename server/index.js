@@ -30,6 +30,7 @@ app.get('/auth/user', user.read);
 app.post('/auth/user', user.addToSession);
 app.get('/auth/logout', user.logOut);
 app.post('/auth/students', user.loginStudent)
+app.post('/auth/classroom', user.checkClassroom)
 
 // student management
 app.get('/students', student.read);

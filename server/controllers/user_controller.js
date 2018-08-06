@@ -58,5 +58,27 @@ module.exports = {
             }
 
         })
+    },
+    checkClassroom: (req, res) => {
+        let db = req.app.get('db');
+        let { pin, initials } = req.body;
+        console.log(pin, initials);
+        let found = false;
+        db.teachers.get_all_teachers().then(teachers => {
+            teachers.forEach(item => {
+                if (item.initials === initials) {
+                    found = true;
+                    if (item.pin.toString() === pin) {
+                        res.status(200).send(item);
+                    }
+                    else {
+                        res.status(404).send('Login invalid.');
+                    }
+                }
+            })
+            if (!found) {
+                res.status(404).send('Teacher not found.');
+            }
+        })
     }
 }
