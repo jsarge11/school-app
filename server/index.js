@@ -7,7 +7,8 @@ const express = require('express'),
       classroom = require('./controllers/classroom_controller'),
       teacher = require('./controllers/teacher_controller'),
       course = require('./controllers/course_controller'),
-      math = require('./controllers/math_controller')
+      math = require('./controllers/math_controller'),
+      problem = require('./controllers/problem_controller')
 require('dotenv').config()
 
 let app = express();
@@ -51,6 +52,9 @@ app.get('/courses', course.read)
 
 //math management
 app.get('/math/assessments', math.readAssessments)
+
+//problem management
+app.get('/math/problems', problem.readMathProblemSets)
 
 massive(CONNECTION_STRING).then(dbInstance => {
       app.set('db', dbInstance);
