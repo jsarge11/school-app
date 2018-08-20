@@ -52,6 +52,7 @@ app.get('/courses', course.read)
 
 //math management
 app.get('/math/assessments', math.readAssessments)
+app.post('/math/assessments', math.addAssessment)
 
 //problem management
 app.get('/math/problemsets', problem.readMathProblemSets)
