@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './studentlist.css'
+import Scores from './Scores/Scores';
 
 
 function StudentList(props) {
@@ -12,6 +13,7 @@ function StudentList(props) {
     {student.pin}&nbsp;
     {student.points}&nbsp;
     {student.grade}
+    <Scores student={student} />
    </div>
   )
  })

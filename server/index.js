@@ -54,7 +54,8 @@ app.get('/courses', course.read)
 app.get('/math/assessments', math.readAssessments)
 
 //problem management
-app.get('/math/problems', problem.readMathProblemSets)
+app.get('/math/problemsets', problem.readMathProblemSets)
+app.get('/math/problems', problem.readMathProblems)
 
 massive(CONNECTION_STRING).then(dbInstance => {
       app.set('db', dbInstance);
