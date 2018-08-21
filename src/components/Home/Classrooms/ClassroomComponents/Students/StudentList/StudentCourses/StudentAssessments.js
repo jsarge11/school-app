@@ -12,14 +12,22 @@ export default class StudentAssessments extends React.Component {
     }
     componentDidMount() {
         axios.get('/math/assessments/student?id=' + this.props.student.st_id).then(res => {
-            this.setState({ assessments: res.data[0].assessments })
+            if (res.data[0].assessments) {
+                this.setState({ assessments: res.data[0].assessments })
+            }
         })
     }
     handleClick = (id) => {
-        let { assessmentValue } = this.state;
-        axios.post('/math/assessments?id=' + id, {assessmentValue: assessmentValue}).then(res => {
-            this.setState({ assessments: res.data[0].assessments })
-        })
+        let { assessmentValue, assessments } = this.state;
+        if (assessments.includes(+assessmentValue)) {
+            alert('Student is already enrolled in that assessment.')
+        }
+        else {
+            axios.post('/math/assessments?id=' + id, {assessmentValue: assessmentValue}).then(res => {
+                this.setState({ assessments: res.data[0].assessments })
+            })
+        }
+
     }
     removeAssessment = (id, item) => {
         axios.delete(`/math/assessments?id=${id}&item=${item}`, {item: item}).then(res => {
@@ -67,13 +75,12 @@ export default class StudentAssessments extends React.Component {
         return (
             <div id="studentAssessments-wrapper">
              <p> Current assessments: </p>
-             {console.log(assessments)}
              {courseList}
-                 <select onChange={this.handleChange} name="assessments" id="assessments">
-                     <option value={1}>Multiplication</option>
-                     <option value={2}>Division</option>
-                     <option value={3}>Addition</option>
-                     <option value={4}>Subtraction</option>
+                 <select onChange={this.handleChange} name="assessments">
+                    <option id="multiplication" value={1}>Multiplication</option>
+                    <option id="division" value={2}>Division</option>
+                    <option id="addition" value={3}>Addition</option>
+                    <option id="subtraction" value={4}>Subtraction</option>
                  </select>
            <button onClick={() => this.handleClick(student.st_id)}>Add Assessment</button>
             </div>
