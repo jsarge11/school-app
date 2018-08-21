@@ -25,5 +25,12 @@ module.exports = {
         db.math.add_assessment(+assessmentValue, +id).then(assessments => {
             res.status(200).send(assessments);
         })
+    },
+    deleteAssessment: (req, res) => {
+        let { id, item } = req.query;
+        let db = req.app.get('db');
+        db.math.delete_assessment(+item, +id).then(assessments => {
+            res.status(200).send(assessments);
+        })
     }
 }

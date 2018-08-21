@@ -54,10 +54,12 @@ app.get('/courses', course.read)
 app.get('/math/assessments', math.readAssessments)
 app.get('/math/assessments/student', math.readStudentAssessments)
 app.post('/math/assessments', math.addAssessment)
+app.delete('/math/assessments', math.deleteAssessment);
 
 //problem management
 app.get('/math/problemsets', problem.readMathProblemSets)
 app.get('/math/problems', problem.readMathProblems)
+
 
 massive(CONNECTION_STRING).then(dbInstance => {
       app.set('db', dbInstance);

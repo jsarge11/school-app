@@ -1,6 +1,8 @@
 import React from 'react'
 import './studentassessments.css'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 
 export default class StudentAssessments extends React.Component {
@@ -19,6 +21,11 @@ export default class StudentAssessments extends React.Component {
             this.setState({ assessments: res.data[0].assessments })
         })
     }
+    removeAssessment = (id, item) => {
+        axios.delete(`/math/assessments?id=${id}&item=${item}`, {item: item}).then(res => {
+            this.setState({ assessments: res.data[0].assessments })
+        })
+    }
 
     handleChange = (e) => {
         this.setState({ assessmentValue: e.target.value })
@@ -26,6 +33,7 @@ export default class StudentAssessments extends React.Component {
 
     render() {
         let { assessments } = this.state;
+        let { student } = this.props;
         let courseList;
 
         if (assessments) {
@@ -45,7 +53,9 @@ export default class StudentAssessments extends React.Component {
                 }
                 return(
                     <div key={i}>
-                        {name}
+                        {name} <FontAwesomeIcon style={{cursor: 'pointer'}}
+                                                onClick={() => this.removeAssessment(student.st_id, item)}
+                                                icon="times" />
                     </div>
                 )
             })
@@ -57,6 +67,7 @@ export default class StudentAssessments extends React.Component {
         return (
             <div id="studentAssessments-wrapper">
              <p> Current assessments: </p>
+             {console.log(assessments)}
              {courseList}
                  <select onChange={this.handleChange} name="assessments" id="assessments">
                      <option value={1}>Multiplication</option>
@@ -64,7 +75,7 @@ export default class StudentAssessments extends React.Component {
                      <option value={3}>Addition</option>
                      <option value={4}>Subtraction</option>
                  </select>
-           <button onClick={() => this.handleClick(this.props.student.st_id)}>Add Assessment</button>
+           <button onClick={() => this.handleClick(student.st_id)}>Add Assessment</button>
             </div>
          )
     }
