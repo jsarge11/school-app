@@ -44,7 +44,7 @@ export default class StudentAssessments extends React.Component {
         let { student } = this.props;
         let courseList;
 
-        if (assessments) {
+        if (assessments.length) {
             courseList = assessments.map((item, i) => {
                 let name = '';
                 switch(item) {
