@@ -59,6 +59,7 @@ app.delete('/math/assessments', math.deleteAssessment);
 //problem management
 app.get('/math/problemsets', problem.readMathProblemSets)
 app.get('/math/problems', problem.readMathProblems)
+app.post('/math/score', math.logScore)
 
 
 massive(CONNECTION_STRING).then(dbInstance => {
