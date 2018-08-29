@@ -42,7 +42,6 @@ module.exports = {
         let { id, PIN } = req.body;
 
         db.students.login_student([id]).then(student => {
-            console.log(typeof student[0].pin, typeof PIN);
             if (student[0].pin === PIN) {
                 res.status(200).send(student);
             }
@@ -55,19 +54,19 @@ module.exports = {
     checkClassroom: (req, res) => {
         let db = req.app.get('db');
         let { login, pin } = req.body;
-        console.log(pin, login);
         let found = false;
         db.classrooms.get_all_classrooms().then(classrooms => {
             classrooms.forEach(item => {
-                if (item.login === login) {
-                    found = true;
-                    if (item.pin.toString() === pin) {
-                        res.status(200).send(item);
+                    if (item.login.trim().toLowerCase() === login.trim().toLowerCase()) {
+                        found = true;
+                        if (item.pin.toString() === pin) {
+                            res.status(200).send(item);
+                        }
+                        else {
+                            res.status(404).send('Login invalid.');
+                        }
                     }
-                    else {
-                        res.status(404).send('Login invalid.');
-                    }
-                }
+
             })
             if (!found) {
                 res.status(404).send('Classroom not found.');
