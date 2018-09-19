@@ -9,15 +9,15 @@ import { connect } from 'react-redux'
 function HomeNav(props) {
     return (
        <div id="homenav-wrapper">
-        <Link to="/"><li>Logo</li></Link>
+        <Link to="/"><li id="logo-text">Fluency Masters</li></Link>
         <div>
+            <li id="homenav-welcome">Welcome, {props.user.first_name} </li>
             <li id="logout-button" onClick={() => {
                 axios.get('/auth/logout').then(() => {
                     props.history.push('/');
                     props.logOut();
                 });
             }}>Logout</li>
-            <li>Welcome, {props.user.first_name} </li>
         </div>
        </div>
     )

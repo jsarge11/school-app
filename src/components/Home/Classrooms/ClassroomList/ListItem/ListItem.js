@@ -16,7 +16,8 @@ render() {
     {!this.state.classroomEdit ?
        <div className="name-section">
            <p> Classroom Name: </p> &nbsp;
-           <Link onClick={()=>this.props.setClassroom(classroom)} to={`/classrooms/gradebook`}>{classroom.name}
+           <Link onClick={()=>this.props.setClassroom(classroom)} to={`/classrooms/gradebook`}>
+            <span className="classroom-name">{classroom.name}</span>
            </Link>
            &nbsp;
            <p id="edit" onClick={()=>this.setState({classroomEdit: true})}>&#9998;</p>
