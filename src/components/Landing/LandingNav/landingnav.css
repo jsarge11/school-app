@@ -1,12 +1,14 @@
 #landingnav-wrapper {
  height: 20%;
- background-color: darkgrey;
  display: flex;
- justify-content: space-between;
+ justify-content: space-evenly;
  align-items: center;
  position: relative;
  z-index: 999;
 }
 #teacher-login-button {
     cursor: pointer;
+}
+#teacher-login-button:hover {
+    color: white;
 }

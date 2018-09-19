@@ -45,7 +45,7 @@ render() {
             <div id={this.props.idName}>
                 <input type="text" placeholder="email" onChange={(e)=>this.handleChange("email", e)} value={this.state.email}/>
                 <input type="password" placeholder="password" onChange={(e)=>this.handleChange("password", e)} value={this.state.password}/>
-                <button onClick={()=>this.login()}> Login </button>
+                <button id="login-button" onClick={()=>this.login()}> Login </button>
                 <p id="login-alert">{this.state.alertMessage}</p>
             </div>
         )

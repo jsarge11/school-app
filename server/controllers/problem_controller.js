@@ -7,8 +7,20 @@ module.exports = {
     },
     readMathProblems: (req, res) => {
         let db = req.app.get('db');
-        db.problem_sets.get_problems([req.query.operator, req.query.number]).then(problems => {
-            res.status(200).send(problems);
-        })
+        let { operator, number } = req.query;
+        if (operator === 'plus') {
+            operator = '+';
+        }
+        if (operator !== '/') {
+            db.problem_sets.get_problems([operator, number]).then(problems => {
+                res.status(200).send(problems);
+            })
+        }
+        else {
+            db.problem_sets.get_division_problems([operator, number]).then(problems => {
+                res.status(200).send(problems);
+            })
+        }
+
     }
 }
