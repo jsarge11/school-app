@@ -15,7 +15,7 @@ render() {
     else {
             return (
             <div id="gradebook-wrapper">
-                Classroom: {this.props.classroom.name}
+                <p>Classroom: {this.props.classroom.name}</p>
                 <StudentList />
             </div>
             )

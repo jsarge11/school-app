@@ -13,11 +13,14 @@ render() {
   let students = this.props.studentList.map(student => {
     return (
      <div key={student.st_id} className="student-list-item">
-      {student.first_name}&nbsp;
-      {student.last_name}&nbsp;
-      {student.pin}&nbsp;
-      {student.points}&nbsp;
-      {student.grade}
+      <p>
+        STUDENT NAME:&nbsp;
+        {student.first_name}&nbsp;
+        {student.last_name}
+      </p>
+      <p>PIN: {student.pin}</p>
+      <p>POINTS: {student.points}</p>
+      <p>GRADE: {student.grade}</p>
       <StudentAssessments student={student}/>
       <Scores student={student} />
      </div>

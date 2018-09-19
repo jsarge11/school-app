@@ -61,9 +61,11 @@ export default class StudentAssessments extends React.Component {
                 }
                 return(
                     <div key={i}>
-                        {name} <FontAwesomeIcon style={{cursor: 'pointer'}}
+                        <span>{name} <FontAwesomeIcon style={{cursor: 'pointer'}}
                                                 onClick={() => this.removeAssessment(student.st_id, item)}
-                                                icon="times" />
+                                                icon="times" 
+                                />
+                        </span>
                     </div>
                 )
             })
@@ -73,16 +75,18 @@ export default class StudentAssessments extends React.Component {
         }
 
         return (
-            <div id="studentAssessments-wrapper">
-             <p> Current assessments: </p>
-             {courseList}
-                 <select onChange={this.handleChange} name="assessments">
-                    <option id="multiplication" value={1}>Multiplication</option>
-                    <option id="division" value={2}>Division</option>
-                    <option id="addition" value={3}>Addition</option>
-                    <option id="subtraction" value={4}>Subtraction</option>
-                 </select>
-           <button onClick={() => this.handleClick(student.st_id)}>Add Assessment</button>
+            <div id="student-assessment-outer-wrapper">
+                <div id="studentAssessments-wrapper">
+                <p> Current assessments: </p>
+                {courseList}
+                    <select onChange={this.handleChange} name="assessments">
+                        <option id="multiplication" value={1}><p>Multiplication</p></option>
+                        <option id="division" value={2}><p>Division</p></option>
+                        <option id="addition" value={3}><p>Addition</p></option>
+                        <option id="subtraction" value={4}><p>Subtraction</p></option>
+                    </select>
+                </div>
+                    <button id="assessment-button" onClick={() => this.handleClick(student.st_id)}>Add Assessment</button>
             </div>
          )
     }
