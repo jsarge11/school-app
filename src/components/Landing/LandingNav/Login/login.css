@@ -5,7 +5,7 @@
     position: absolute;
     right: -300px;
     top: 200px;
-    background-color: black;
+    border: 2px solid black;
 
     width: 10%;
     display: flex;

@@ -4,3 +4,8 @@
     background: url("../../assets/images/classroom.jpg");
     background-size: cover;
 }
+#quote-wrapper {
+    margin: 10%;
+    width: 40%;
+    transition: all 1s ease;
+}
