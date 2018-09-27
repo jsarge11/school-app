@@ -16,6 +16,7 @@ state = {
 componentDidUpdate(prevProps) {
     if (this.props.user !== prevProps.user) {
         axios.get('/classrooms?id=' + this.props.user.t_id).then(res => {
+            console.log(res.data);
             this.props.setClassroomList(res.data);
      })
     }
