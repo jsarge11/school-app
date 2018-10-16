@@ -49,7 +49,7 @@ render() {
                     <section className="modal-body">
                         Name: <input onChange={(e) => this.handleChange('classroomName', e)} value={this.state.classroomName} type="text" className="user-enter" />
                         PIN: <input onChange={(e) => this.handleChange('newPin', e)} value={this.state.newPin} type="text" className="user-enter"  maxLength={4}/>
-                        <button onClick={() => this.addClassroom()}>Change</button>
+                        <button onClick={() => this.addClassroom()}>Add</button>
                     </section>
 
             </div>
