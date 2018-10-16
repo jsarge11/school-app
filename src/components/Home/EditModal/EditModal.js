@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { connect } from 'react-redux'
 import { setClassroom } from '../../../ducks/reducer'
 import axios from 'axios'
-import './editmodal.css'
+import '../../../globalcss/modal.css'
 
 
 class EditModal extends Component {
@@ -36,9 +36,9 @@ render() {
     }
 
     return (
-        <div style={modalStyle} id="edit-modal-wrapper">
-            <div id="edit-modal-screen-dimmer"></div>
-            <div id="edit-modal">
+        <div style={modalStyle} className="modal-wrapper">
+            <div className="modal-screen-dimmer"></div>
+            <div className="modal">
                     <section className="modal-header">
                         Enter Classroom PIN: (4 digits)
 
@@ -48,7 +48,7 @@ render() {
                         />
                     </section>
                     <section className="modal-body">
-                        <input onChange={this.handleChange} value={this.state.newPin} type="text" name="user" id="user-enter" maxLength={4}/>
+                        <input onChange={this.handleChange} value={this.state.newPin} type="text" name="user" className="user-enter" maxLength={4}/>
                         <button onClick={() => this.changePIN()}>Change</button>
                     </section>
 

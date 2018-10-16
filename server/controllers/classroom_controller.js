@@ -7,7 +7,7 @@ module.exports = {
     },
     create: (req, res) => {
         let db = req.app.get('db');
-        db.classrooms.add_classroom([req.query.id, req.body.classroomName]).then(classrooms => {
+        db.classrooms.add_classroom([req.query.id, req.body.classroomName, req.body.pin]).then(classrooms => {
             res.status(200).send(classrooms);
         }).catch(error => res.status(500).send(error));
     },

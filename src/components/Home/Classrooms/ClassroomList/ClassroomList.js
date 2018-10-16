@@ -4,13 +4,13 @@ import axios from 'axios';
 import ListItem from './ListItem/ListItem'
 import { connect } from 'react-redux'
 import { setClassroomList } from '../../../../ducks/reducer'
+import AddClassModal from './AddClassModal/AddClassModal';
 
 
 class ClassroomList extends Component {
 
 state = {
-    classroomName: '',
-    classroomAdd: false,
+    modalEdit: false,
 }
 
 componentDidUpdate(prevProps) {
@@ -25,13 +25,6 @@ handleChange = (field, e) => {
     this.setState({ [`${field}`] : e.target.value})
 }
 
-addClassroom = () => {
-    let { classroomName } = this.state;
-    this.setState({ classroomAdd: false, classroomName: '' })
-    axios.post('/classrooms?id=' + this.props.user.t_id, {classroomName: classroomName}).then(res => {
-        this.props.setClassroomList(res.data);
-    }).catch(error => console.log(error))
-}
 editClassroomName = (clsr_id) => {
     let { newName } = this.state;
     axios.put('/classrooms/name?id=' + clsr_id + '&t_id=' + this.props.user.t_id, {text: newName }).then(res => {
@@ -45,6 +38,9 @@ deleteClassroom = (clsr_id) => {
     }).catch(error => console.log(error))
 }
 
+toggleClassroom = () => {
+    this.setState({ modalEdit: !this.state.modalEdit})
+}
 compare = (a, b) => {
     return a.clsr_id - b.clsr_id;
 }
@@ -61,17 +57,14 @@ render() {
    })
         return (
            <div>
-                {!this.state.classroomAdd ?
-                <button onClick={()=>this.setState({ classroomAdd: true })}> Add Classroom </button> :
-                <div>
-                    <input type="text" onChange={(e) => this.handleChange("classroomName", e)} value={this.state.classroomName}/>
-                    <input type="submit" value="Add Class" onClick={()=>this.addClassroom()}/>
-                </div>
-            }
+                <button onClick={() => this.toggleClassroom()}> Add Classroom </button>
+                <AddClassModal modalEdit={this.state.modalEdit} toggleClassroom={this.toggleClassroom}/>
 
                 <div id="classroom-list-wrapper">
                   {classrooms}
                 </div>
+
+
            </div>
         )
     }

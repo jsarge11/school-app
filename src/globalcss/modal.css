@@ -1,4 +1,4 @@
-#edit-modal-wrapper {
+.modal-wrapper {
     position: absolute;
     top: 0;
     left: 0;
@@ -6,7 +6,7 @@
     right: 0;
     transition: all .5s ease;
 }
-#edit-modal {
+.modal {
     position: fixed;
     height: 50%;
     width: 50%;
@@ -14,7 +14,7 @@
     top: 25%;
     background: white;
 }
-#edit-modal-screen-dimmer {
+.modal-screen-dimmer {
     position: fixed;
     height: 100%;
     width: 100%;
@@ -38,7 +38,7 @@
     align-items: center;
     justify-content: space-evenly;
 }
-#user-enter {
+.user-enter {
     width: 30%;
     text-align: center;
     height: 25%;
