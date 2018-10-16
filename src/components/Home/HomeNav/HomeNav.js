@@ -22,4 +22,10 @@ function HomeNav(props) {
        </div>
     )
 }
-export default withRouter(connect(null, {logOut})(HomeNav))
+function mapStateToProps(state) {
+    let { user } = state;
+    return {
+        user,
+    }
+}
+export default withRouter(connect(mapStateToProps, {logOut})(HomeNav))

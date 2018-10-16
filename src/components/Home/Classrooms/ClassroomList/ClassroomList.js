@@ -16,7 +16,6 @@ state = {
 componentDidUpdate(prevProps) {
     if (this.props.user !== prevProps.user) {
         axios.get('/classrooms?id=' + this.props.user.t_id).then(res => {
-            console.log(res.data);
             this.props.setClassroomList(res.data);
      })
     }
@@ -33,9 +32,9 @@ addClassroom = () => {
         this.props.setClassroomList(res.data);
     }).catch(error => console.log(error))
 }
-editClassroom = (clsr_id) => {
+editClassroomName = (clsr_id) => {
     let { newName } = this.state;
-    axios.put('/classrooms?id=' + clsr_id + '&t_id=' + this.props.user.t_id, {text: newName }).then(res => {
+    axios.put('/classrooms/name?id=' + clsr_id + '&t_id=' + this.props.user.t_id, {text: newName }).then(res => {
         this.props.setClassroomList(res.data);
     })
 }
@@ -56,7 +55,7 @@ render() {
        <ListItem key={item.clsr_id}
                  classroom={item}
                  handleChange={this.handleChange}
-                 editClassroom={this.editClassroom}
+                 editClassroomName={this.editClassroomName}
                  deleteClassroom={this.deleteClassroom} />
      )
    })
@@ -78,9 +77,10 @@ render() {
     }
 }
 function mapStateToProps(state) {
-    let {classroomList} = state;
+    let {classroomList, user} = state;
     return {
-        classroomList
+        classroomList,
+        user
     }
 }
 export default connect(mapStateToProps, {setClassroomList})(ClassroomList)

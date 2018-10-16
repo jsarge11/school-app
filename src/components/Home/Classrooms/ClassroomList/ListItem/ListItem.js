@@ -28,7 +28,7 @@ render() {
            <input type="text" onChange={(e) => this.props.handleChange("newName", e)}/>
            <input type="submit" value="Submit"
              onClick={()=>{
-                           this.props.editClassroom(classroom.clsr_id);
+                           this.props.editClassroomName(classroom.clsr_id);
                            this.setState({ classroomEdit: false })}
                      }
            />

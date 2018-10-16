@@ -10,9 +10,10 @@ import Assessments from './ClassroomComponents/Courses/Assessments/Assessments';
 
 
 function ClassRoutes(props) {
+  console.log(props);
   return (
   <div id="classroom-wrapper">
-      <HomeNav user={props.user}/>
+      <HomeNav />
       <ClassroomNav />
         <Switch>
           <Route exact path="/classrooms/gradebook" component={Gradebook}/>

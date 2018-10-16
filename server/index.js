@@ -39,7 +39,8 @@ app.post('/students', student.create);
 
 //classroom management
 app.get('/classrooms', classroom.read);
-app.put('/classrooms', classroom.update);
+app.put('/classrooms/name', classroom.update_name);
+app.put('/classrooms/pin', classroom.update_pin);
 app.post('/classrooms', classroom.create);
 app.delete('/classrooms', classroom.delete);
 

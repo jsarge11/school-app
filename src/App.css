@@ -10,7 +10,7 @@ html, body {
  height: 100%;
  width: 100%;
 }
-h1, h2, p, li, ul, button, input, option, span {
+h1, h2, p, li, ul, button, input, option, span, section, article, button {
     font-family: 'Quicksand', sans-serif;
 }
 li, ul {

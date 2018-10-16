@@ -55,4 +55,10 @@ render() {
         )
     }
 }
-export default connect(null, { setTeacherList })(AddTeacher)
+function mapStateToProps(state) {
+    let { user } = state;
+    return {
+        user
+    }
+}
+export default connect(mapStateToProps, { setTeacherList })(AddTeacher)

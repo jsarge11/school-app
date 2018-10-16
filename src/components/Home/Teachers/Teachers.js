@@ -15,10 +15,16 @@ class Teachers extends Component {
 render() {
         return (
            <div id="teacher-wrapper">
-            <AddTeacher user={this.props.user}/>
+            <AddTeacher />
             <TeacherList />
            </div>
         )
     }
 }
-export default connect(null, { setTeacherList })(Teachers)
+function mapStateToProps(state) {
+    let { user } = state;
+    return {
+        user
+    }
+}
+export default connect(mapStateToProps, { setTeacherList })(Teachers)

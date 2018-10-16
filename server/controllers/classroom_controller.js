@@ -11,7 +11,13 @@ module.exports = {
             res.status(200).send(classrooms);
         }).catch(error => res.status(500).send(error));
     },
-    update: (req, res) => {
+    update_name: (req, res) => {
+        let db = req.app.get('db');
+        db.classrooms.update_classroom_name([req.body.text, req.query.id, +req.query.t_id]).then(classrooms => {
+            res.status(200).send(classrooms);
+        })
+    },
+    update_pin: (req, res) => {
         let db = req.app.get('db');
         db.classrooms.update_classroom_name([req.body.text, req.query.id, +req.query.t_id]).then(classrooms => {
             res.status(200).send(classrooms);

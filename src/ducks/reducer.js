@@ -2,16 +2,24 @@ const initialState = {
  classroom: null,
  classroomList: [],
  studentList: [],
- teacherList: []
+ teacherList: [],
+ user: {}
 }
 
 const SET_CLASSROOM = 'SET_CLASSROOM'
 const SET_CLASSROOM_LIST = 'SET_CLASSROOM_LIST'
 const SET_STUDENT_LIST = 'SET_STUDENT_LIST'
 const SET_TEACHER_LIST = 'SET_TEACHER_LIST'
+const SET_USER = 'SET_USER'
 const LOGOUT = 'LOGOUT'
 
 
+export function setUser(user) {
+  return {
+    type: SET_USER,
+    payload: user
+  }
+}
 export function setTeacherList(teacherList) {
   return {
     type: SET_TEACHER_LIST,
@@ -45,6 +53,8 @@ export function logOut() {
 
 export default function reducer(state = initialState, action) {
  switch(action.type) {
+  case(SET_USER) :
+   return Object.assign({}, state, {user: action.payload})
   case(SET_CLASSROOM) :
    return Object.assign({}, state, {classroom: action.payload})
   case(SET_CLASSROOM_LIST) :
