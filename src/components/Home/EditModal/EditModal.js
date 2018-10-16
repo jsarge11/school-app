@@ -36,7 +36,7 @@ render() {
                     </section>
                     <section className="modal-body">
                         <input onChange={this.handleChange} value={this.state.newPin} type="text" name="user" id="user-enter" maxLength={4}/>
-                        <button>Change</button>
+                        <button onClick={() => this.changePIN()}>Change</button>
                     </section>
 
             </div>
