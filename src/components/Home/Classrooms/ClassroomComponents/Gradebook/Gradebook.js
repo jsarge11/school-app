@@ -12,6 +12,9 @@ state = {
     pinEdit: false
 }
 
+toggleEdit = () => {
+    this.setState({ pinEdit: !this.state.pinEdit})
+}
 render() {
     if (!this.props.classroom) {
         return <Redirect push to="/home" />
@@ -19,8 +22,9 @@ render() {
     else {
             return (
             <div id="gradebook-wrapper">
-                <EditModal />
-                <p>Classroom: {this.props.classroom.name} &nbsp; Classroom PIN: {this.props.classroom.pin}<span id="pin-edit">&#9998;</span></p>
+                <EditModal toggleEdit={this.toggleEdit} pinEdit={this.state.pinEdit}/>
+                <p>Classroom: {this.props.classroom.name} &nbsp; Classroom PIN: {this.props.classroom.pin}
+                    <span onClick={() => this.toggleEdit()}id="pin-edit">&#9998;</span></p>
                 <StudentList />
             </div>
             )

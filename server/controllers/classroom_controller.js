@@ -18,10 +18,12 @@ module.exports = {
         })
     },
     update_pin: (req, res) => {
+        let { id } = req.query;
+        let { clsr_id, pin } = req.body;
         let db = req.app.get('db');
-        db.classrooms.update_classroom_name([req.body.text, req.query.id, +req.query.t_id]).then(classrooms => {
+        db.classrooms.change_pin([+pin, clsr_id, id]).then(classrooms => {
             res.status(200).send(classrooms);
-        })
+        }).catch((error) => console.log(error))
     },
     delete: (req, res) => {
         let db = req.app.get('db');

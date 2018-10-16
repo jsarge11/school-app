@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { connect } from 'react-redux'
+import { setClassroom } from '../../../ducks/reducer'
 import axios from 'axios'
 import './editmodal.css'
 
@@ -18,19 +19,31 @@ changePIN = () => {
     let { newPin } = this.state;
 
     axios.put(`/classrooms/pin?id=${user.t_id}`, {clsr_id: classroom.clsr_id, pin: newPin }).then(res => {
-        console.log(res.data);
-    })
+
+        this.props.setClassroom(res.data[0]);
+        this.setState({ newPin: '' });
+        this.props.toggleEdit();
+    }).catch((error) => console.log(error))
 }
 render() {
-        return (
-        <div id="edit-modal-wrapper">
+    console.log(this.props.classroom);
+    let modalStyle = !this.props.pinEdit ? {
+        zIndex: -99999,
+        opacity: 0
+    } : {
+        zIndez: 99999,
+        opacity: 1
+    }
+
+    return (
+        <div style={modalStyle} id="edit-modal-wrapper">
             <div id="edit-modal-screen-dimmer"></div>
             <div id="edit-modal">
                     <section className="modal-header">
                         Enter Classroom PIN: (4 digits)
 
                         <FontAwesomeIcon style={{cursor: 'pointer'}}
-                                                    onClick={() => alert('cancel me!')}
+                                                    onClick={() => this.props.toggleEdit()}
                                                     icon="times"
                         />
                     </section>
@@ -52,4 +65,4 @@ function mapStateToProps(state) {
         user
     }
 }
-export default connect(mapStateToProps)(EditModal)
+export default connect(mapStateToProps, { setClassroom })(EditModal)

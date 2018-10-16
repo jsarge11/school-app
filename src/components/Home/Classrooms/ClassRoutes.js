@@ -10,7 +10,6 @@ import Assessments from './ClassroomComponents/Courses/Assessments/Assessments';
 
 
 function ClassRoutes(props) {
-  console.log(props);
   return (
   <div id="classroom-wrapper">
       <HomeNav />
