@@ -6,7 +6,7 @@ function TeacherList(props) {
     let teachers = props.teacherList.map(item => {
         return (
             <div key={item.t_id} className="teacher-wrapper">
-                {item.first_name}
+                <p> Name: {item.first_name} {item.last_name} </p>
             </div>
         )
     })

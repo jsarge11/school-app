@@ -11,10 +11,19 @@ class AddTeacherModal extends React.Component {
         last_name: '',
         email: '',
         admin_privileges: false,
-        principle: false
+        principle: false,
+        grades: [],
+        grade: 0
     }
     handleChange = (field, e) => {
         this.setState({ [`${field}`]: e.target.value })
+    }
+    setGrade = (num) => {
+        this.setState({ grade: num })
+    }
+    addGrade = () => {
+        let { grades, grade } = this.state;
+        this.setState({ grades: [...grades, grade]})
     }
     addTeacher = () => {
         let { user } = this.props;
@@ -35,11 +44,12 @@ class AddTeacherModal extends React.Component {
             zIndez: 99999,
             opacity: 1
         }
-
+        console.log(this.state.grades);
         return (
+
             <div style={modalStyle} className="modal-wrapper">
                 <div className="modal-screen-dimmer"></div>
-                <div className="modal">
+                <div className="modal" id="teacher-modal-wrapper">
                         <section className="modal-header">
                             Add Teacher:
 
@@ -60,7 +70,20 @@ class AddTeacherModal extends React.Component {
                             <span className="modal-radio">
                                 Admin Privileges?
                                 Yes <input onChange={() => this.setState({ admin_privileges: true })} type="radio" name="admin"/>
-                                No <input onChange={() => this.setState({ admin_privileges: false })}type="radio"  name="admin" defaultChecked/>
+                                No <input onChange={() => this.setState({ admin_privileges: false })} type="radio"  name="admin" defaultChecked/>
+                            </span>
+                            <span> Grades Taught:
+                                <select onChange={(e) => this.setGrade(+e.target.value)} name="grades" id="modal-select">
+                                    <option value={0}>Kindergarden</option>
+                                    <option value={1}>First</option>
+                                    <option value={2}>Second</option>
+                                    <option value={3}>Third</option>
+                                    <option value={4}>Fourth</option>
+                                    <option value={5}>Fifth</option>
+                                    <option value={6}>Sixth</option>
+                                </select>
+                                <button onClick={() => this.addGrade()}>Add</button>
+
                             </span>
 
                             <button className="modal-button" onClick={() => this.addTeacher()}> Add Teacher </button>

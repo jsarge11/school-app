@@ -1,10 +1,10 @@
-.classroom-list-item {
+.teacher-wrapper {
     border: 1px solid black;
     margin: 1%;
     padding: 5px;
     display: flex;
     justify-content: space-around
    }
-   .classroom-name:hover {
+   .teacher-name:hover {
        text-decoration: underline;
    }
