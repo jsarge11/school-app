@@ -1,4 +1,4 @@
-insert into teachers(first_name, last_name, gender, school_id, admin_privileges, principle, email, hash)
-values($1, $2, $3, $4, $5, $6, $7, $8);
+insert into teachers(first_name, last_name, admin_privileges, principle, email, hash, school_id)
+values($1, $2, $3, $4, $5, $6, $7);
 select * from teachers
-where school_id = $4;
+where school_id = $7;
