@@ -47,6 +47,7 @@ app.delete('/classrooms', classroom.delete);
 //teacher management
 app.post('/teachers', teacher.create);
 app.get('/teachers', teacher.read);
+app.delete('/teachers', teacher.delete)
 
 //course management
 app.get('/courses', course.read)

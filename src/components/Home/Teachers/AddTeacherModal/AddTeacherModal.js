@@ -68,7 +68,6 @@ class AddTeacherModal extends React.Component {
             zIndez: 99999,
             opacity: 1
         }
-        console.log(this.state.grades);
         return (
 
             <div style={modalStyle} className="modal-wrapper">

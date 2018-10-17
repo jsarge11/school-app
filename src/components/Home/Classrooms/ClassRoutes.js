@@ -6,7 +6,6 @@ import Points from './ClassroomComponents/Points/Points'
 import Students from './ClassroomComponents/Students/Students'
 import { Switch, Route } from 'react-router-dom'
 import Courses from './ClassroomComponents/Courses/Courses';
-import Assessments from './ClassroomComponents/Courses/Assessments/Assessments';
 
 
 function ClassRoutes(props) {
@@ -19,7 +18,6 @@ function ClassRoutes(props) {
           <Route path="/classrooms/points" component={Points}/>
           <Route exact path="/classrooms/courses" component={Courses}/>
           <Route path="/classrooms/students" component={Students}/>
-          <Route path="/classrooms/courses/assessments:id" component={Assessments}/>
         </Switch>
     </div>
 )
