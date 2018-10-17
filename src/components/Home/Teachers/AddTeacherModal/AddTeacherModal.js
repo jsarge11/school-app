@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios'
 import { setTeacherList} from '../../../../ducks/reducer'
+import { toWordGrade } from '../../../../assets/fns/functions';
 
 
 class AddTeacherModal extends React.Component {
@@ -54,33 +55,7 @@ class AddTeacherModal extends React.Component {
 
     render() {
         let currentGrades = this.state.grades.map(item => {
-            let textGrade = '';
-            switch(item) {
-                case(0) :
-                textGrade = 'Kindergarden';
-                break;
-                case(1) :
-                textGrade = 'First';
-                break;
-                case(2) :
-                textGrade = 'Second';
-                break;
-                case(3) :
-                textGrade = 'Third';
-                break;
-                case(4) :
-                textGrade = 'Fourth';
-                break;
-                case(5) :
-                textGrade = 'Fifth';
-                break;
-                case(6) :
-                textGrade = 'Sixth';
-                break;
-                default :
-                textGrade = "Kindergarden";
-                break;
-            }
+            let textGrade = toWordGrade(item);
             return (
                 <p style={{color: 'white', margin: 0}} key={item}>{textGrade}</p>
             )

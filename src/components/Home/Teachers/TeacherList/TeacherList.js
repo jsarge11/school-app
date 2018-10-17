@@ -1,12 +1,25 @@
 import React from 'react'
 import './teacherlist.css'
 import { connect } from 'react-redux'
+import { toWordGrade } from '../../../../assets/fns/functions';
 
 function TeacherList(props) {
     let teachers = props.teacherList.map(item => {
+        let textGrades;
+        if (item.grades) {
+            textGrades = item.grades.map(numberGrade => {
+                let wordGrade = toWordGrade(numberGrade);
+                return (
+                    <span>{wordGrade}, </span>
+                )
+            })
+        }
+        else {
+            textGrades = 'none';
+        }
         return (
             <div key={item.t_id} className="teacher-wrapper">
-                <p> Name: {item.first_name} {item.last_name} </p>
+                <p> Name: <em>{item.first_name} {item.last_name}</em> <br/> Grades Taught: <em>{textGrades}</em> </p>
             </div>
         )
     })
