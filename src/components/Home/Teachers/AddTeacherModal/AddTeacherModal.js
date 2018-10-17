@@ -15,6 +15,17 @@ class AddTeacherModal extends React.Component {
         grades: [],
         grade: 0
     }
+    nullState = () => {
+        this.setState({
+            first_name: '',
+            last_name: '',
+            email: '',
+            admin_privileges: false,
+            principle: false,
+            grades: [],
+            grade: 0
+        })
+    }
     handleChange = (field, e) => {
         this.setState({ [`${field}`]: e.target.value })
     }
@@ -23,20 +34,58 @@ class AddTeacherModal extends React.Component {
     }
     addGrade = () => {
         let { grades, grade } = this.state;
-        this.setState({ grades: [...grades, grade]})
+        if (grades.includes(grade)) {
+            alert('Already selected!')
+        }
+        else {
+            this.setState({ grades: [...grades, grade]})
+        }
     }
     addTeacher = () => {
         let { user } = this.props;
-        let { first_name, last_name, email, admin_privileges, principle } = this.state;
-        axios.post(`/teachers?id=${user.t_id}`, {first_name, last_name, email, admin_privileges, principle, school_id: user.school_id}).then(res => {
+        let { first_name, last_name, email, admin_privileges, principle, grades } = this.state;
+        axios.post(`/teachers?id=${user.t_id}`, {first_name, last_name, email, admin_privileges, principle, school_id: user.school_id, grades}).then(res => {
             console.log(res.data[0]);
             this.props.toggleTeacher();
-            this.setState({ first_name: '', last_name: '', email: '' });
+            this.nullState();
             this.props.setTeacherList(res.data);
         }).catch(error => console.log(error))
     }
 
     render() {
+        let currentGrades = this.state.grades.map(item => {
+            let textGrade = '';
+            switch(item) {
+                case(0) :
+                textGrade = 'Kindergarden';
+                break;
+                case(1) :
+                textGrade = 'First';
+                break;
+                case(2) :
+                textGrade = 'Second';
+                break;
+                case(3) :
+                textGrade = 'Third';
+                break;
+                case(4) :
+                textGrade = 'Fourth';
+                break;
+                case(5) :
+                textGrade = 'Fifth';
+                break;
+                case(6) :
+                textGrade = 'Sixth';
+                break;
+                default :
+                textGrade = "Kindergarden";
+                break;
+            }
+            return (
+                <p style={{color: 'white', margin: 0}} key={item}>{textGrade}</p>
+            )
+
+        })
         let modalStyle = !this.props.modalEdit ? {
             zIndex: -99999,
             opacity: 0
@@ -72,19 +121,21 @@ class AddTeacherModal extends React.Component {
                                 Yes <input onChange={() => this.setState({ admin_privileges: true })} type="radio" name="admin"/>
                                 No <input onChange={() => this.setState({ admin_privileges: false })} type="radio"  name="admin" defaultChecked/>
                             </span>
-                            <span> Grades Taught:
-                                <select onChange={(e) => this.setGrade(+e.target.value)} name="grades" id="modal-select">
-                                    <option value={0}>Kindergarden</option>
-                                    <option value={1}>First</option>
-                                    <option value={2}>Second</option>
-                                    <option value={3}>Third</option>
-                                    <option value={4}>Fourth</option>
-                                    <option value={5}>Fifth</option>
-                                    <option value={6}>Sixth</option>
-                                </select>
-                                <button onClick={() => this.addGrade()}>Add</button>
 
-                            </span>
+                            Grades Taught: {currentGrades}
+                                <div id="modal-select">
+                                    <select onChange={(e) => this.setGrade(+e.target.value)} name="grades">
+                                        <option value={0}>Kindergarden</option>
+                                        <option value={1}>First</option>
+                                        <option value={2}>Second</option>
+                                        <option value={3}>Third</option>
+                                        <option value={4}>Fourth</option>
+                                        <option value={5}>Fifth</option>
+                                        <option value={6}>Sixth</option>
+                                    </select>
+                                    <button onClick={() => this.addGrade()}>Add Grade</button>
+                                </div>
+
 
                             <button className="modal-button" onClick={() => this.addTeacher()}> Add Teacher </button>
                         </section>

@@ -55,6 +55,10 @@
 .modal-button {
     margin: 10px;
 }
+#modal-select {
+    display: flex;
+    align-items: center;
+}
 select {
     height: 40px;
 }
