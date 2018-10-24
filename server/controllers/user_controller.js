@@ -53,11 +53,11 @@ module.exports = {
     },
     checkClassroom: (req, res) => {
         let db = req.app.get('db');
-        let { login, pin } = req.body;
+        let { name, pin } = req.body;
         let found = false;
         db.classrooms.get_all_classrooms().then(classrooms => {
             classrooms.forEach(item => {
-                    if (item.login.trim().toLowerCase() === login.trim().toLowerCase()) {
+                    if (item.name.trim().toLowerCase() === name.trim().toLowerCase()) {
                         found = true;
                         if (item.pin.toString() === pin) {
                             res.status(200).send(item);
