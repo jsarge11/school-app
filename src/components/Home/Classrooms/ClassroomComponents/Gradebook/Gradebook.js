@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import StudentList from '../Students/StudentList/StudentList'
 import { withRouter, Redirect } from 'react-router-dom'
 import './gradebook.css'
 import EditModal from '../../../EditModal/EditModal';
+import StudentGrades from './StudentGrades/StudentGrades';
 
 
 class Gradebook extends Component {
@@ -25,7 +25,7 @@ render() {
                 <EditModal toggleEdit={this.toggleEdit} pinEdit={this.state.pinEdit}/>
                 <p>Classroom: {this.props.classroom.name} &nbsp; Classroom PIN: {this.props.classroom.pin}
                     <span onClick={() => this.toggleEdit()}id="pin-edit">&#9998;</span></p>
-                <StudentList />
+                    <StudentGrades />
             </div>
             )
         }

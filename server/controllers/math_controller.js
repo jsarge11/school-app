@@ -55,9 +55,14 @@ module.exports = {
        }
        let { id } = req.query;
        let db = req.app.get('db');
-       console.log(problem_set);
        db.scores.math.add_score(date, score, id, problem_set, incorrect, number).then(() => {
            res.status(200).send();
        }).catch(error => console.log(error))
+    },
+    readScore: (req, res) => {
+        let db = req.app.get('db');
+        db.scores.math.get_score(req.query.id).then(score => {
+            res.status(200).send(score);
+        }).catch(error => console.log(error))
     }
 }

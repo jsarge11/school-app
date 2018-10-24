@@ -2,7 +2,6 @@ import React from 'react'
 import './teacherlist.css'
 import { connect } from 'react-redux'
 import { toWordGrade } from '../../../../assets/fns/functions';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function TeacherList(props) {
@@ -24,14 +23,12 @@ function TeacherList(props) {
                 <p> Name: <em>{item.first_name} {item.last_name}</em> <br/>
                 Grades Taught: <em>{textGrades}</em> <br/>
                 Email: <em>{item.email}</em>
+
                 </p>
                 {!item.principle ?
-                <FontAwesomeIcon
-                                style={{cursor: 'pointer'}}
-                                onClick={() => props.deleteTeacher(item.t_id)}
-                                icon="times"
-                 /> :
-                 ''}
+                    <p className="delete-teacher" style={{cursor: 'pointer'}} onClick={() => props.deleteTeacher(item.t_id)}>&#128465;</p>
+                :
+                 <p style={{display: 'none'}}>&#128465;</p>}
 
             </div>
         )

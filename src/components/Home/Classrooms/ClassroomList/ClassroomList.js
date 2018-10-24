@@ -35,12 +35,13 @@ editClassroomName = (clsr_id) => {
 deleteClassroom = (clsr_id) => {
     axios.delete('/classrooms?id=' + clsr_id + '&t_id=' + this.props.user.t_id).then(res => {
         this.props.setClassroomList(res.data);
-    }).catch(error => console.log(error))
+    }).catch(() => alert('Cannot delete, classroom contains students. Please delete students and try again.'))
 }
 
 toggleClassroom = () => {
     this.setState({ modalEdit: !this.state.modalEdit})
 }
+//ordering list the same way everytime
 compare = (a, b) => {
     return a.clsr_id - b.clsr_id;
 }

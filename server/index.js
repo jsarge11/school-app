@@ -36,6 +36,7 @@ app.post('/auth/classroom', user.checkClassroom)
 // student management
 app.get('/students', student.read);
 app.post('/students', student.create);
+app.delete('/students', student.delete);
 
 //classroom management
 app.get('/classrooms', classroom.read);
@@ -52,6 +53,11 @@ app.delete('/teachers', teacher.delete)
 //course management
 app.get('/courses', course.read)
 
+
+//score management
+app.get('/math/score', math.readScore)
+app.post('/math/score', math.logScore)
+
 //math management
 app.get('/math/assessments', math.readAssessments)
 app.get('/math/assessments/student', math.readStudentAssessments)
@@ -61,7 +67,7 @@ app.delete('/math/assessments', math.deleteAssessment);
 //problem management
 app.get('/math/problemsets', problem.readMathProblemSets)
 app.get('/math/problems', problem.readMathProblems)
-app.post('/math/score', math.logScore)
+
 
 
 massive(CONNECTION_STRING).then(dbInstance => {

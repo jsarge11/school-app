@@ -11,5 +11,12 @@ module.exports = {
         db.students.get_students_by_id([req.query.id]).then(students => {
             res.status(200).send(students);
         }).catch(error => console.log(error))
+    },
+    delete: (req, res) => {
+        let db = req.app.get('db');
+        let { id, clsr_id } = req.query;
+        db.students.delete_student([id, clsr_id]).then(students => {
+            res.status(200).send(students);
+        }).catch(error => console.log(error))
     }
 }
