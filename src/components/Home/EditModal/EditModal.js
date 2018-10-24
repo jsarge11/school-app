@@ -26,7 +26,6 @@ changePIN = () => {
     }).catch((error) => console.log(error))
 }
 render() {
-    console.log(this.props.classroom);
     let modalStyle = !this.props.pinEdit ? {
         zIndex: -99999,
         opacity: 0
