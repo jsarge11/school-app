@@ -14,9 +14,9 @@ componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
         let promises = [];
         let { studentList } = this.props;
-        console.log("Student List:", studentList);
 
-        studentList.map(item => {
+        //bringing in data for each student, didn't use a join statement because of the amount of data returned
+        studentList.forEach(item => {
             promises.push(axios.get(`/math/score?id=${item.st_id}`))
         })
         axios.all(promises).then(res => {
@@ -27,11 +27,20 @@ componentDidUpdate(prevProps) {
 componentWillUnmount() {
     this.props.setStudentList([]);
 }
+showScores(id) {
+
+}
 render() {
-        console.log(this.state.studentData);
+        let students = this.props.studentList.map((item, i) => {
+            return (
+                <div key={item.st_id}>
+                    <p>{item.first_name}</p>
+                </div>
+            )
+        })
         return (
            <div id="student-grade-wrapper">
-            {/* {students} */}
+            {students}
            </div>
         )
     }
