@@ -4,7 +4,6 @@ import './addstudent.css'
 
 
 function AddStudent(props) {
-
     return (
         <div id="add-student-wrapper">
             <input type="text" placeholder="first_name" onChange={(e)=>props.handleChange("first_name", e)} value={props.first_name}/>

@@ -19,6 +19,7 @@ state = {
     points: 0,
     grade: ''
 }
+
 componentDidMount() {
     axios.get('/students?id=' + this.props.classroom.clsr_id).then(res => {
         this.props.setStudentList(res.data);
