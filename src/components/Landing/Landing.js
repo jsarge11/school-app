@@ -9,7 +9,7 @@ state = {
   opacity: 0
 }
 componentDidMount() {
-  axios.get('https://sargentassociates.com:4000https://talaikis.com/api/quotes/').then(res => {
+  axios.get('http://sargentassociates.com:4000https://talaikis.com/api/quotes/').then(res => {
     this.setState({ quoteArray: res.data, opacity: 1})
   })
 }

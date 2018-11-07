@@ -12,7 +12,7 @@ class Teachers extends Component {
     }
 
 componentDidMount() {
-    axios.get('https://sargentassociates.com:4000/teachers?id=' + this.props.user.school_id).then(res => {
+    axios.get('http://sargentassociates.com:4000/teachers?id=' + this.props.user.school_id).then(res => {
         this.props.setTeacherList(res.data);
     })
 }
@@ -20,7 +20,7 @@ toggleTeacher = () => {
     this.setState({ modalEdit: !this.state.modalEdit})
 }
 deleteTeacher = (id) => {
-    axios.delete('https://sargentassociates.com:4000/teachers?id=' + id).then(res => {
+    axios.delete('http://sargentassociates.com:4000/teachers?id=' + id).then(res => {
         this.props.setTeacherList(res.data);
     }).catch(() => alert('Cannot delete, teacher has classrooms. Please delete classrooms then try again.'))
 }

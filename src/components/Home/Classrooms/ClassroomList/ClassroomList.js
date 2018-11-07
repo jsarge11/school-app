@@ -15,7 +15,7 @@ state = {
 
 componentDidUpdate(prevProps) {
     if (this.props.user !== prevProps.user) {
-        axios.get('https://sargentassociates.com:4000/classrooms?id=' + this.props.user.t_id).then(res => {
+        axios.get('http://sargentassociates.com:4000/classrooms?id=' + this.props.user.t_id).then(res => {
             this.props.setClassroomList(res.data);
      })
     }
@@ -27,13 +27,13 @@ handleChange = (field, e) => {
 
 editClassroomName = (clsr_id) => {
     let { newName } = this.state;
-    axios.put('https://sargentassociates.com:4000/classrooms/name?id=' + clsr_id + '&t_id=' + this.props.user.t_id, {text: newName }).then(res => {
+    axios.put('http://sargentassociates.com:4000/classrooms/name?id=' + clsr_id + '&t_id=' + this.props.user.t_id, {text: newName }).then(res => {
         this.props.setClassroomList(res.data);
     })
 }
 
 deleteClassroom = (clsr_id) => {
-    axios.delete('https://sargentassociates.com:4000/classrooms?id=' + clsr_id + '&t_id=' + this.props.user.t_id).then(res => {
+    axios.delete('http://sargentassociates.com:4000/classrooms?id=' + clsr_id + '&t_id=' + this.props.user.t_id).then(res => {
         this.props.setClassroomList(res.data);
     }).catch(() => alert('Cannot delete, classroom contains students. Please delete students and try again.'))
 }
