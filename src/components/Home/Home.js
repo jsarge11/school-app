@@ -11,7 +11,7 @@ import Teachers from './Teachers/Teachers';
 
 class Home extends Component {
   componentDidMount() {
-    axios.get('/auth/user').then(res => {
+    axios.get('https://sargentassociates.com:4000/auth/user').then(res => {
         this.props.setUser(res.data )
     }).catch(()=>this.props.history.push('/'))
   }

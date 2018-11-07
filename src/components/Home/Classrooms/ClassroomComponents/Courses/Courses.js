@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import './courses.css'
 import { Redirect, withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Axios from 'axios';
+import axios from 'axios';
 
 
 class Courses extends Component {
@@ -11,7 +11,7 @@ class Courses extends Component {
         courses: []
     }
     componentDidMount() {
-        Axios.get('/courses').then(res => {
+        axios.get('https://sargentassociates.com:4000/courses').then(res => {
             this.setState({ courses: res.data })
         })
     }
