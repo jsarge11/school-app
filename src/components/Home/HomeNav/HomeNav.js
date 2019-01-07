@@ -13,7 +13,8 @@ function HomeNav(props) {
         <div>
             <li id="homenav-welcome">Welcome, {props.user.first_name} </li>
             <li id="logout-button" onClick={() => {
-                axios.get('http://sargentassociates.com:4000/auth/logout').then(() => {
+                axios.get('http://localhost:4000/auth/logout').then(() => {
+                    console.log('successfully logged out')
                     props.history.push('/');
                     props.logOut();
                 });

@@ -13,7 +13,7 @@ class Login extends Component {
     }
 
 componentDidMount() {
-    axios.get('http://sargentassociates.com:4000/auth/user').then(res => {
+    axios.get('http://localhost:4000/auth/user').then(res => {
         this.props.history.push('/home');
     }).catch(()=> console.log('Not logged in.'))
 }
@@ -25,12 +25,14 @@ handleChange = (field, e) => {
 login = () => {
     this.setState({alertMessage: ''}, () => {
         let temp = this.state.email;
-        axios.get('http://sargentassociates.com:4000/auth/user?email=' + temp).then(res => {
+        axios.get('http://localhost:4000/auth/user?email=' + temp).then(res => {
             if (bcrypt.compareSync(this.state.password, res.data)) {
+                console.log('password correct');
                 this.setState({ email: '', password: ''})
-                axios.post('http://sargentassociates.com:4000/auth/user?email='+ temp).then(res => {
+                axios.post('http://localhost:4000/auth/user?email='+ temp).then(res => {
+                    console.log('pushing to home');
                     this.props.history.push('/home');
-                })
+                }).catch(error => console.log(error))
             }
             else {
                 this.setState({ alertMessage: 'Incorrect Password'})

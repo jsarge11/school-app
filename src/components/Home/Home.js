@@ -7,12 +7,12 @@ import ClassroomList from './Classrooms/ClassroomList/ClassroomList'
 import axios from 'axios'
 import './home.css'
 import Teachers from './Teachers/Teachers';
-
+axios.defaults.withCredentials = true;
 
 class Home extends Component {
   componentDidMount() {
-    axios.get('http://sargentassociates.com:4000/auth/user').then(res => {
-        this.props.setUser(res.data )
+    axios.get('http://localhost:4000/auth/user').then(res => {
+        this.props.setUser(res.data)
     }).catch(()=>this.props.history.push('/'))
   }
 

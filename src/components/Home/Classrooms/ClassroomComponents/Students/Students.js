@@ -21,7 +21,7 @@ state = {
 }
 
 componentDidMount() {
-    axios.get('http://sargentassociates.com:4000/students?id=' + this.props.classroom.clsr_id).then(res => {
+    axios.get('http://localhost:4000/students?id=' + this.props.classroom.clsr_id).then(res => {
         this.props.setStudentList(res.data);
     })
 }
@@ -46,7 +46,7 @@ addStudent = () => {
         this.setState({ [`${key}`] : '' })
     }
 
-    axios.post('http://sargentassociates.com:4000/students', newStudent).then(res => {
+    axios.post('http://localhost:4000/students', newStudent).then(res => {
         this.props.setStudentList(res.data);
     })
 }
