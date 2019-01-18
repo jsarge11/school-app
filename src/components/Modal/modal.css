@@ -1,0 +1,189 @@
+.modal-wrapper {
+ position: absolute;
+ top: 0;
+ left: 0;
+ bottom: 0;
+ right: 0;
+ transition: all .5s ease;
+}
+.modal {
+ height: 50%;
+ position: fixed;
+ padding: 2%;
+ width: 50%;
+ left: 20%;
+ top: 20%;
+ background: white;
+ border: 1px solid black;
+ overflow: none;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: space-evenly;
+ border-radius: 45px;
+ font-size: 30px;
+}
+.modal-screen-dimmer {
+ position: fixed;
+ top:0;
+ height: 100vh;
+ width: 100vw;
+ background: black;
+ opacity: .5;
+}
+.modal-header {
+ display: flex;
+ justify-content: space-evenly;
+ height: 10%;
+ text-align: center;
+ padding-top: 5%;
+ font-size: 30px;
+ font-weight: bold;
+}
+.modal-body {
+ height: 80%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: space-evenly;
+}
+.modal-button {
+ height: 50px;
+ width: 75%;
+ border-radius: 25px;
+ background-color: black;
+ color: white;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ cursor: pointer;
+ font-size: 30px;
+ transition: all .5s ease;
+ border: 1px solid black;
+ margin: 5%;
+}
+.modal-button:hover {
+ background-color: white;
+ color: black;
+ transition: all .5s ease;
+}
+.modal-button:active {
+ background-color: black;
+ color: white;
+}
+.user-input {
+ height: 25%;
+ font-size: 40px;
+ border: none;
+ border-bottom: 1px solid lightgrey;
+ color: #787878;
+ transition: all .5s ease;
+ font-family: 'Thasadith', sans-serif;
+}
+.user-input:focus {
+ border-bottom: 1px solid black;
+ transition: .5s ease-in-out;
+ color: black;
+}
+.user-input::placeholder {
+ color: lightgrey;
+ font-family: 'Thasadith', sans-serif;
+}
+.modal-radio {
+ margin: 2% 0;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+.radio-item {
+ width: 60%;
+}
+.checkbox-item {
+ width: 20%;
+ height: 50%;
+}
+.input-item {
+ display: flex;
+ justify-content: space-between;
+ border: 1px solid lightgrey;
+ border-radius: 8px;
+ margin: 5px;
+ cursor: pointer;
+}
+.select-box {
+ width: 60%;
+ display: flex;
+ justify-content: space-between;
+ border: 1px solid lightgrey;
+ border-radius: 8px;
+ margin: 5px;
+ cursor: pointer;
+}
+.close-button {
+ cursor: pointer;
+ transition: color .5s ease;
+ position: relative;
+ right: -40%;
+ top: 5%;
+}
+.close-button:hover {
+ color: white;
+ background: black;
+ border-radius: 50%;
+ transition: color .5s ease;
+}
+.close-button:active {
+ color: black;
+ background: white;
+}
+label {
+ cursor: pointer;
+}
+label:hover {
+ background: #e2e2e2
+}
+input[type="radio"] {
+ display: none;
+}
+input[type="checkbox"] {
+ display: none;
+}
+
+label p {
+ border-radius: 8px;
+ text-align: center;
+}
+
+input[type="radio"]:checked+p {
+ background-color: rgb(212, 212, 212);
+ transition: all .1s ease;
+}
+input[type="checkbox"]:checked+p {
+ background-color: rgb(212, 212, 212);
+ transition: all .1s ease;
+}
+a {
+ text-decoration: none;
+ color: none;
+}
+.grade-wrapper {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ width: 90%;
+ justify-content: center;
+}
+.grade-item-wrapper {
+ margin: 5px;
+ padding: 5px;
+ text-align: center;
+ border: 1px solid lightgrey;
+ border-radius: 8px;
+ height: 50%;
+ width: 10%;
+ list-style: none;
+}
+label {
+ width: 15%;
+}

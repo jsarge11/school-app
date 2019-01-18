@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import './gradebook.css'
-import EditModal from '../../../EditModal/EditModal';
 import StudentGrades from './StudentGrades/StudentGrades';
 
 
@@ -22,7 +21,6 @@ render() {
     else {
             return (
             <div id="gradebook-wrapper">
-                <EditModal toggleEdit={this.toggleEdit} pinEdit={this.state.pinEdit}/>
                 <p>Classroom: {this.props.classroom.name} &nbsp; Classroom PIN: {this.props.classroom.pin}
                     <span onClick={() => this.toggleEdit()}id="pin-edit">&#9998;</span></p>
                     <StudentGrades />

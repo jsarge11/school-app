@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import './teachers.css'
-import AddTeacherModal from './AddTeacherModal/AddTeacherModal';
 import TeacherList from './TeacherList/TeacherList';
 import { connect } from 'react-redux'
 import axios from 'axios'
@@ -28,9 +27,6 @@ render() {
         return (
            <div id="teacher-wrapper">
             <button onClick={() => this.toggleTeacher()}> Add Teacher </button>
-            <AddTeacherModal
-                toggleTeacher={this.toggleTeacher}
-                modalEdit={this.state.modalEdit} />
             <TeacherList
                 deleteTeacher={this.deleteTeacher} />
            </div>

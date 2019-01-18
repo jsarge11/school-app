@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import AddStudent from './AddStudent/AddStudent'
 import StudentList from './StudentList/StudentList'
 import { setStudentList } from '../../../../../ducks/reducer'
 import { withRouter, Redirect } from 'react-router-dom'
@@ -67,18 +66,6 @@ render() {
             return (
             <div id="student-wrapper">
                 {/* Students for classroom {this.props.classroom.name} */}
-                {this.state.addStudent ?
-                    <AddStudent
-                        addStudent={this.addStudent}
-                        handleChange={this.handleChange}
-                        first_name={this.state.first_name}
-                        last_name={this.state.last_name}
-                        username={this.state.username}
-                        pin={this.state.pin}
-                        points={this.state.points}
-                    />
-                :
-                <button onClick={()=>this.setState({ addStudent: true })}>Add Student</button>}
                 <StudentList />
             </div>
             )

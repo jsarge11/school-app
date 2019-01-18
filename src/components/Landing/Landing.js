@@ -8,7 +8,7 @@ state = {
   quoteArray: [],
   opacity: 0
 }
-// CORS ERROS - not working
+// CORS ERROR - not working
 // componentDidMount() {
 //   axios.get('https://talaikis.com/api/quotes/').then(res => {
 //     this.setState({ quoteArray: res.data, opacity: 1})

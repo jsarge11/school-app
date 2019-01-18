@@ -37,7 +37,7 @@ login = () => {
             else {
                 this.setState({ alertMessage: 'Incorrect Password'})
             }
-        }).catch(error => this.setState({ alertMessage: error.response.data}))
+        }).catch(error => console.log(error))
     })
 }
 
