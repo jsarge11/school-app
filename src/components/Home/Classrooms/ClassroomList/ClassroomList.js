@@ -68,12 +68,6 @@ class ClassroomList extends Component {
                     modalToggle={this.state.modalToggle}
                     toggleModal={this.toggleModal} 
                 />
-                <Modal 
-                    screens={3} 
-                    addName="Teachers" 
-                    modalToggle={this.state.modalToggle}
-                    toggleModal={this.toggleModal} 
-                />
             </div>
         )
     }

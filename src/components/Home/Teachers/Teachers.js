@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Modal from '../../Modal/Modal'
 import './teachers.css'
 import TeacherList from './TeacherList/TeacherList';
 import { connect } from 'react-redux'
@@ -7,7 +8,7 @@ import { setTeacherList } from '../../../ducks/reducer'
 
 class Teachers extends Component {
     state = {
-        modalEdit: false
+        modalToggle: false
     }
 
 componentDidMount() {
@@ -15,8 +16,9 @@ componentDidMount() {
         this.props.setTeacherList(res.data);
     })
 }
-toggleTeacher = () => {
-    this.setState({ modalEdit: !this.state.modalEdit})
+toggleModal = () => {
+    console.log('toggling modal')
+    this.setState({ modalToggle: !this.state.modalToggle})
 }
 deleteTeacher = (id) => {
     axios.delete('http://localhost:4000/teachers?id=' + id).then(res => {
@@ -26,9 +28,15 @@ deleteTeacher = (id) => {
 render() {
         return (
            <div id="teacher-wrapper">
-            <button onClick={() => this.toggleTeacher()}> Add Teacher </button>
+            <button onClick={() => this.toggleModal()}> Add Teacher </button>
             <TeacherList
                 deleteTeacher={this.deleteTeacher} />
+            <Modal
+                    screens={3} 
+                    addName="Teachers" 
+                    modalToggle={this.state.modalToggle}
+                    toggleModal={this.toggleModal} 
+            />
            </div>
         )
     }
