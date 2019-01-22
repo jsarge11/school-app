@@ -22,6 +22,7 @@ class ClassroomList extends Component {
     }
 
     handleChange = (field, e) => {
+        console.log(e);
         this.setState({ [`${field}`]: e.target.value })
     }
 
