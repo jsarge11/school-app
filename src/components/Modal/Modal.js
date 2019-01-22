@@ -19,14 +19,14 @@ class StageOne extends Component {
     handleChange = (field, value) => {
         this.setState({ [`${field}`] : value})
     }
+
     handleEnter = (e) => {
         if (e.key === 'Enter') {
-            this.handleSubmit();
+            this.addClassroom();
         }
     } 
 
     checkPIN = () => {
-        console.log(this.state.pin)
         if (this.state.pin.length < 4) {
             return false;
         }
@@ -36,7 +36,6 @@ class StageOne extends Component {
     }
 
     checkName = () => {
-        console.log(this.state)
         if (this.state.classroomName.length < 1) {
             return false;
         }
@@ -68,7 +67,6 @@ class StageOne extends Component {
                 classroomName: this.state.classroomName 
             }
             axios.post(`/classrooms?id=${this.props.user.t_id}`, newObj).then(res => {
-                console.log(res.data)
                 this.props.setClassroomList(res.data);
                 this.props.toggleModal();
             }).catch(error => console.log(error))
@@ -79,7 +77,7 @@ class StageOne extends Component {
 
     render() {
         return (
-           <div>
+           <div onKeyDown={(e) => this.handleEnter(e)}>
                {this.props.modalToggle ? <div>
                 <div className="modal-screen-dimmer"></div>
                 <div className="modal">
@@ -94,7 +92,7 @@ class StageOne extends Component {
                            className="user-input" 
                            onChange={(e) => this.handleChange("classroomName", e.target.value)} />
                      <span className="alert" id="alert_name"></span>
-                    <input type="text" 
+                    <input type="number" 
                            placeholder="PIN" 
                            className="user-input" 
                            onChange={(e) => this.handleChange("pin", e.target.value)} />
