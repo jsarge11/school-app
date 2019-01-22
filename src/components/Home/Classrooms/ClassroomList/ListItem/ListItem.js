@@ -10,14 +10,12 @@ state = {
 }
 
 handleEnter = (e) => {
-    console.log(e)
-    if (e.key == 'Enter') {
+    if (e.key === 'Enter') {
         this.handleSubmit();
     }
 } 
 handleEscape = (e) => {
-    console.log('hey', e)
-    if (e.key == 'Escape') {
+    if (e.key === 'Escape') {
         this.setState({ classroomEdit: false })
     }
 } 

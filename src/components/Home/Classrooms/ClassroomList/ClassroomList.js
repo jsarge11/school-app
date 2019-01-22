@@ -21,6 +21,12 @@ class ClassroomList extends Component {
         }
     }
 
+    handleEscape = (e) => {
+        if (e.key === 'Escape') {
+            this.setState({ modalToggle: false })
+        }
+    }
+
     handleChange = (field, e) => {
         console.log(e);
         this.setState({ [`${field}`]: e.target.value })
@@ -58,12 +64,13 @@ class ClassroomList extends Component {
             )
         })
         return (
-            <div>
+            <div onKeyDown={e => this.handleEscape(e)}>
                 <button onClick={() => this.toggleModal()}> Add Classroom </button>
                 <div id="classroom-list-wrapper">
                     {classrooms}
                 </div>
                 <Modal 
+                    
                     screens={1} 
                     addName="Classroom" 
                     modalToggle={this.state.modalToggle}

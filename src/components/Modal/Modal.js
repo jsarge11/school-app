@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './modal.css'
+import '../../globalcss/alerts.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { setClassroomList } from '../../ducks/reducer'
@@ -10,25 +11,71 @@ import AddButton from './modal-items/AddButton';
 import axios from 'axios';
 
 class StageOne extends Component {
-    state = {
-        viewModal: false
-    }
 
+    state = {
+        classroomName: '',
+        pin: ''
+    }
     handleChange = (field, value) => {
         this.setState({ [`${field}`] : value})
     }
+    handleEnter = (e) => {
+        if (e.key === 'Enter') {
+            this.handleSubmit();
+        }
+    } 
+
+    checkPIN = () => {
+        console.log(this.state.pin)
+        if (this.state.pin.length < 4) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    checkName = () => {
+        console.log(this.state)
+        if (this.state.classroomName.length < 1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
     addClassroom = () => {
-        let newObj = {
-            pin: this.state.pin,
-            classroomName: this.state.classroomName 
+
+        let isValidName = this.checkName();
+        let isValidPIN = this.checkPIN();
+
+        if (!isValidName) {
+            document.getElementById("alert_name").innerHTML = "Please enter a non-empty name.";
         }
-       axios.post(`/classrooms?id=${this.props.user.t_id}`, newObj).then(res => {
-           console.log(res.data)
-           this.props.setClassroomList(res.data);
-           this.props.toggleModal();
-       }).catch(error => console.log(error))
+        else {
+            document.getElementById("alert_name").innerHTML = "";
+        }
+        if (!isValidPIN) {
+            document.getElementById("alert_pin").innerHTML = "Please enter at least 4 digits.";
+        }
+        else {
+            document.getElementById("alert_pin").innerHTML = "";
+        }
+        if (isValidName && isValidPIN) {         
+            let newObj = {
+                pin: this.state.pin,
+                classroomName: this.state.classroomName 
+            }
+            axios.post(`/classrooms?id=${this.props.user.t_id}`, newObj).then(res => {
+                console.log(res.data)
+                this.props.setClassroomList(res.data);
+                this.props.toggleModal();
+            }).catch(error => console.log(error))
+        }
     }   
+
+    
 
     render() {
         return (
@@ -46,10 +93,12 @@ class StageOne extends Component {
                            placeholder="Name"
                            className="user-input" 
                            onChange={(e) => this.handleChange("classroomName", e.target.value)} />
+                     <span className="alert" id="alert_name"></span>
                     <input type="text" 
                            placeholder="PIN" 
                            className="user-input" 
                            onChange={(e) => this.handleChange("pin", e.target.value)} />
+                     <span className="alert" id="alert_pin"></span>
                     
                     
                 {/* <AddClassroom /> */}
@@ -59,6 +108,7 @@ class StageOne extends Component {
                         addName="Classroom" /> :
                     <p>There will be more ... </p>
                 }
+               
                 </section>
                 </div>
             </div> : ''}
