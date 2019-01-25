@@ -3,20 +3,7 @@ import React from 'react'
 export default function RadioItem(props) {
 return (
   <span className="modal-radio">
-  <br/>
-  <label className="input-item radio-item">
-      <input id="radio1" type="radio" name="admin"/>
-      <p>Principal</p>
-  </label >
-  <label className="input-item radio-item">
-      <input id="radio2" type="radio" name="admin"/>
-      <p>Admin</p>
-  </label>
-  <label className="input-item radio-item">
-      <input id="radio3" type="radio" name="admin"/>
-      <p>Teacher</p>
-  </label>
-  <br/>
+
   Grade:  
   <div className="grade-wrapper">
       <label className="input-item checkbox-item">

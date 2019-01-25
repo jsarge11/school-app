@@ -9,15 +9,35 @@ import AddClassroom from './AddClassroom';
 import AddTeacher from './AddTeacher';
 import AddButton from './modal-items/AddButton';
 import axios from 'axios';
+import Breadcrumbs from './modal-items/Breadcrumbs'
 
-class StageOne extends Component {
+class Modal extends Component {
 
     state = {
         classroomName: '',
-        pin: ''
+        pin: '',
+        activeCrumb: 0
     }
+
     handleChange = (field, value) => {
-        this.setState({ [`${field}`] : value})
+        if (field === "teacher" || field === "admin" || field === "principal") {
+            switch(field) {
+                case "principal":
+                    this.setState({ teacher: false, admin: false, principal: true })
+                    break;
+                case "teacher":
+                    this.setState({ teacher: true, admin: false, principal: false })
+                    break;
+                case "admin":
+                    this.setState({ teacher: false, admin: true, principal: false })
+                    break;
+                default:
+                    this.setState({ teacher: false, admin: false, principal: false })
+            }
+        }
+        else {
+            this.setState({ [`${field}`] : value})
+        }
     }
 
     handleEnter = (e) => {
@@ -25,6 +45,16 @@ class StageOne extends Component {
             this.addClassroom();
         }
     } 
+    nextPage = () => {
+        if (this.state.activeCrumb < this.props.screens - 1) {
+            this.setState({ activeCrumb: this.state.activeCrumb + 1 })
+        }
+    }
+    prevPage = () => {
+        if (this.state.activeCrumb > 0) {
+            this.setState({ activeCrumb: this.state.activeCrumb - 1 })
+        }
+    }
 
     checkPIN = () => {
         if (this.state.pin.length < 4) {
@@ -73,9 +103,21 @@ class StageOne extends Component {
         }
     }   
 
+
+    componentSwitch = () => {
+        switch(this.props.addName) {
+            case("Classroom") :
+                return <AddClassroom handleChange={this.handleChange} /> 
+            case("Teachers") :
+                return <AddTeacher handleChange={this.handleChange}/>
+            default :
+                return <div>Internal Error - Please Contact Web Support with Error #A1111</div>
+        }
+    }
     
 
     render() {
+        console.log(this.state);
         return (
            <div onKeyDown={(e) => this.handleEnter(e)}>
                {this.props.modalToggle ? <div>
@@ -87,24 +129,19 @@ class StageOne extends Component {
                         onClick={() => this.props.toggleModal()}
                     />
                  <section className="modal-body">
-                    <input type="text" 
-                           placeholder="Name"
-                           className="user-input" 
-                           onChange={(e) => this.handleChange("classroomName", e.target.value)} />
-                     <span className="alert" id="alert_name"></span>
-                    <input type="number" 
-                           placeholder="PIN" 
-                           className="user-input" 
-                           onChange={(e) => this.handleChange("pin", e.target.value)} />
-                     <span className="alert" id="alert_pin"></span>
-                    
-                    
-                {/* <AddClassroom /> */}
+                 
+                {this.componentSwitch()}
+
                 {this.props.screens <= 1 ? 
                     <AddButton 
                         fn={this.addClassroom} 
-                        addName="Classroom" /> :
-                    <p>There will be more ... </p>
+                        addName={this.props.addName} /> :
+                    <Breadcrumbs 
+                        active={this.state.activeCrumb} 
+                        crumbs={this.props.screens}
+                        nextPage={this.nextPage}
+                        prevPage={this.prevPage}
+                    />
                 }
                
                 </section>
@@ -120,4 +157,4 @@ function mapStateToProps(state) {
         user
     }
 }
-export default connect(mapStateToProps, { setClassroomList })(StageOne)
+export default connect(mapStateToProps, { setClassroomList })(Modal)

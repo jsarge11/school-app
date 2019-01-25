@@ -70,7 +70,6 @@ class ClassroomList extends Component {
                     {classrooms}
                 </div>
                 <Modal 
-                    
                     screens={1} 
                     addName="Classroom" 
                     modalToggle={this.state.modalToggle}

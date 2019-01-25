@@ -1,12 +1,9 @@
 import React from 'react'
+import RadioItems from './modal-items/RadioItems'
 
 const AddTeacher = props => {
  return (
-  <section className="modal-body">
-            <input placeholder="Name" type="text" className="user-input" />
-            <input placeholder="Email" type="text" className="user-input" />
-
-  </section>
+  <RadioItems handleChange={props.handleChange}/>
  )
 }
 export default AddTeacher

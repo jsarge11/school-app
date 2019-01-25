@@ -17,7 +17,6 @@ componentDidMount() {
     })
 }
 toggleModal = () => {
-    console.log('toggling modal')
     this.setState({ modalToggle: !this.state.modalToggle})
 }
 deleteTeacher = (id) => {
