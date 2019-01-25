@@ -6,15 +6,15 @@ const RadioItems = props => {
     <br/>
    <label className="input-item radio-item">
        <input id="radio1" type="radio" name="admin" onChange={(e) => props.handleChange("principal")}/>
-       <p>Principal</p>
+       <p className="radio-p">Principal</p>
    </label >
    <label className="input-item radio-item">
        <input id="radio2" type="radio" name="admin" onChange={(e) => props.handleChange("admin")}/>
-       <p>Admin</p>
+       <p className="radio-p">Admin</p>
    </label>
    <label className="input-item radio-item">
        <input id="radio3" type="radio" name="admin" onChange={(e) => props.handleChange("teacher")}/>
-       <p>Teacher</p>
+       <p className="radio-p">Teacher</p>
    </label>
    <br/>
   </span>

@@ -31,7 +31,7 @@ render() {
             <TeacherList
                 deleteTeacher={this.deleteTeacher} />
             <Modal
-                    screens={3} 
+                    screens={4} 
                     addName="Teachers" 
                     modalToggle={this.state.modalToggle}
                     toggleModal={this.toggleModal} 

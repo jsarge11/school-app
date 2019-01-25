@@ -16,7 +16,9 @@ class Modal extends Component {
     state = {
         classroomName: '',
         pin: '',
-        activeCrumb: 0
+        activeCrumb: 0,
+        teacherName: '',
+        teacherEmail: ''
     }
 
     handleChange = (field, value) => {
@@ -109,7 +111,10 @@ class Modal extends Component {
             case("Classroom") :
                 return <AddClassroom handleChange={this.handleChange} /> 
             case("Teachers") :
-                return <AddTeacher handleChange={this.handleChange}/>
+                return <AddTeacher 
+                    handleChange={this.handleChange} 
+                    activeCrumb={this.state.activeCrumb}
+                    />
             default :
                 return <div>Internal Error - Please Contact Web Support with Error #A1111</div>
         }
