@@ -9,11 +9,11 @@
 .modal {
  min-height: 300px;
  min-width: 200px;
- height: 50%;
+ height: 60%;
  position: fixed;
  width: 50%;
  left: 25%;
- top: 25%;
+ top: 10%;
  background: white;
  border: 1px solid black;
  display: flex;
@@ -125,6 +125,7 @@
 .checkbox-p {
  width: 100%;
  border-radius: 7px;
+ text-align: center;
 }
 .select-box {
  width: 60%;
@@ -169,7 +170,7 @@ label .radio-p {
  text-align: center;
  height: 100%;
  width: 100%;
- padding: 10%;
+ padding: 4%;
 }
 
 input[type="radio"]:checked+p {
@@ -191,7 +192,7 @@ a {
  flex-wrap: wrap;
  width: 90%;
  justify-content: center;
- 
+
 }
 .grade-item-wrapper {
  margin: 5px;
@@ -206,8 +207,11 @@ a {
 label {
  width: 15%;
 }
-@media (max-width: 1000px){
+@media (max-width: 1300px){
  .user-input {
   font-size: 30px;
+ }
+ label .radio-p {
+  padding: 0;
  }
 }

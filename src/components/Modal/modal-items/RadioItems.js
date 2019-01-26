@@ -3,6 +3,7 @@ import React from 'react'
 const RadioItems = props => {
  return (
   <span className="modal-radio">
+  <p>Select New Employee Role: </p>
     <br/>
    <label className="input-item radio-item">
        <input id="radio1" type="radio" name="admin" onChange={(e) => props.handleChange("principal")}/>

@@ -4,6 +4,7 @@ import Checkbox from './Checkbox';
 export default function CheckboxList(props) {
     return (
         <span className="modal-radio">
+        <p>Select Grades Taught (if any)</p>
             <div className="grade-wrapper">
                 <Checkbox grade="K" />
                 <Checkbox grade="1st" />
