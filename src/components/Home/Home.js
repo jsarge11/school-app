@@ -21,7 +21,7 @@ render() {
      <div id="home-wrapper">
       <HomeNav />
       <ClassroomList/>
-      {this.props.user.principle ? <Teachers /> : ''}
+      {this.props.user.principal ? <Teachers /> : ''}
     </div>
     )
    }

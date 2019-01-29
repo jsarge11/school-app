@@ -11,7 +11,7 @@ function HomeNav(props) {
        <div id="homenav-wrapper">
         <Link to="/"><li id="logo-text">Fluency Masters</li></Link>
         <div>
-            <li id="homenav-welcome">Welcome, {props.user.first_name} </li>
+            <li id="homenav-welcome">Welcome, {props.user.name} </li>
             <li id="logout-button" onClick={() => {
                 axios.get('http://localhost:4000/auth/logout').then(() => {
                     console.log('successfully logged out')

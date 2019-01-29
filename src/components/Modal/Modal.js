@@ -4,7 +4,7 @@ import './modal.css'
 import '../../globalcss/alerts.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
-import { setClassroomList } from '../../ducks/reducer'
+import { setClassroomList, setTeacherList } from '../../ducks/reducer'
 import AddClassroom from './AddClassroom';
 import AddTeacher from './AddTeacher';
 import AddButton from './modal-items/AddButton';
@@ -131,6 +131,22 @@ class Modal extends Component {
         }
     }   
 
+    addTeacher = () => {
+        let {teacherName, teacherEmail, gradesTaught, admin, principal } = this.state;
+        let admin_privileges = admin || principal;
+        let teacherObj = {
+            name: teacherName,
+            admin_privileges,
+            principal,
+            email: teacherEmail,
+            grades: gradesTaught
+        }
+        axios.post('/teachers', teacherObj).then(response => {
+           this.props.setTeacherList(response.data);
+           this.toggleModal();
+        }).catch(error => console.log(error))
+    }
+
 
     componentSwitch = () => {
         let { teacherName, teacherEmail, admin, principal, teacher, gradesTaught } = this.state;
@@ -182,6 +198,7 @@ class Modal extends Component {
                         crumbs={this.props.screens}
                         nextPage={this.nextPage}
                         prevPage={this.prevPage}
+                        addTeacher={this.addTeacher}
                     />
                 }
                
@@ -198,4 +215,4 @@ function mapStateToProps(state) {
         user
     }
 }
-export default connect(mapStateToProps, { setClassroomList })(Modal)
+export default connect(mapStateToProps, { setClassroomList, setTeacherList })(Modal)
