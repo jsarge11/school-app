@@ -139,9 +139,11 @@ class Modal extends Component {
             admin_privileges,
             principal,
             email: teacherEmail,
-            grades: gradesTaught
+            grades: gradesTaught,
+            school_id: this.props.user.school_id
         }
         axios.post('/teachers', teacherObj).then(response => {
+            console.log(response.data);
            this.props.setTeacherList(response.data);
            this.toggleModal();
         }).catch(error => console.log(error))
@@ -201,7 +203,6 @@ class Modal extends Component {
                         addTeacher={this.addTeacher}
                     />
                 }
-               
                 </section>
                 </div>
             </div> : ''}

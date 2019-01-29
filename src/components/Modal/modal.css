@@ -64,6 +64,7 @@
  transition: all .5s ease;
  border: 1px solid black;
  padding: 3%;
+ margin: 1%;
 }
 .modal-button:hover {
  background-color: white;

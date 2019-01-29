@@ -6,8 +6,25 @@ export default class BreadCrumbs extends Component {
 
   }
   
+  componentSwitch = (crumbsArr) => {
+    let { crumbs, active, addTeacher, nextPage, prevPage } = this.props;
+    console.log(crumbs, active);
+    if (crumbs === active + 1) {
+      return <span className="add-teacher-wrapper">
+          <button className="modal-button" disabled={active === 0} onClick={() => prevPage()}>Prev</button>
+          <AddButton fn={addTeacher} addName="Teacher" />
+        </span>
+    }
+    else {
+      return  <span className="breadcrumb-wrapper">
+        <button className="modal-button" disabled={active === 0} onClick={() => prevPage()}>Prev</button>
+        {crumbsArr}
+        <button className="modal-button" disabled={active === crumbs - 1} onClick={() => nextPage()}>Next</button> <br/>
+      </span>
+    }
+  }
   render() {
-    let { crumbs, nextPage, prevPage, active, addTeacher } = this.props;
+    let { crumbs, active } = this.props;
 
     let crumbsArr = [];
     for (let i = 0; i < crumbs; i++) {
@@ -20,13 +37,7 @@ export default class BreadCrumbs extends Component {
     }
 
     return (
-      <span className="breadcrumb-wrapper">
-        <button className="modal-button" disabled={this.props.active === 0} onClick={() => prevPage()}>Prev</button>
-        {crumbsArr}
-        <button className="modal-button" disabled={this.props.active === this.props.crumbs - 1} onClick={() => nextPage()}>Next</button> <br/>
-        <div>
-        </div>
-      </span>
+     this.componentSwitch(crumbsArr)
     )
   }
 }
