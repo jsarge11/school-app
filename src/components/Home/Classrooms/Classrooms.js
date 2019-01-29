@@ -38,4 +38,5 @@ class Classrooms extends Component {
       classroom,
     }
   }
+  
   export default withRouter(connect(mapStateToProps, { setStudentList, setUser })(Classrooms))

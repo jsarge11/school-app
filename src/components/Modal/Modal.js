@@ -11,15 +11,25 @@ import AddButton from './modal-items/AddButton';
 import axios from 'axios';
 import Breadcrumbs from './modal-items/Breadcrumbs'
 
+const initialState = {
+    classroomName: '',
+    pin: '',
+    activeCrumb: 0,
+    teacherName: '',
+    teacherEmail: '',
+    teacher: false,
+    admin: false,
+    principal: false,
+    gradesTaught: []
+}
+
 class Modal extends Component {
 
-    state = {
-        classroomName: '',
-        pin: '',
-        activeCrumb: 0,
-        teacherName: '',
-        teacherEmail: ''
-    }
+    state = {...initialState}
+   
+     resetState = () => {
+        this.setState(initialState);
+     }
 
     handleChange = (field, value) => {
         if (field === "teacher" || field === "admin" || field === "principal") {
@@ -41,7 +51,23 @@ class Modal extends Component {
             this.setState({ [`${field}`] : value})
         }
     }
+    handleCheckbox = (e) => {
+        let arr = this.state.gradesTaught.slice();
+        let index = arr.indexOf(e.target.value)
+        if (index === -1) {
+            arr.push(e.target.value)
+        }
+        else {
+            arr.splice(index, 1);
+        }
 
+        this.setState({ gradesTaught: arr })
+    }
+
+    toggleModal = () => {
+        this.props.toggleModal();
+        this.resetState();
+    }
     handleEnter = (e) => {
         if (e.key === 'Enter') {
             this.addClassroom();
@@ -107,6 +133,15 @@ class Modal extends Component {
 
 
     componentSwitch = () => {
+        let { teacherName, teacherEmail, admin, principal, teacher, gradesTaught } = this.state;
+        let teacherObj = {
+            teacherName,
+            teacherEmail,
+            admin,
+            principal,
+            teacher,
+            gradesTaught
+        }
         switch(this.props.addName) {
             case("Classroom") :
                 return <AddClassroom handleChange={this.handleChange} /> 
@@ -114,6 +149,8 @@ class Modal extends Component {
                 return <AddTeacher 
                     handleChange={this.handleChange} 
                     activeCrumb={this.state.activeCrumb}
+                    handleCheckbox={this.handleCheckbox}
+                    teacherState={teacherObj}
                     />
             default :
                 return <div>Internal Error - Please Contact Web Support with Error #A1111</div>
@@ -122,7 +159,6 @@ class Modal extends Component {
     
 
     render() {
-        console.log(this.state);
         return (
            <div onKeyDown={(e) => this.handleEnter(e)}>
                {this.props.modalToggle ? <div>
@@ -131,7 +167,7 @@ class Modal extends Component {
                     <FontAwesomeIcon 
                         icon={faTimesCircle} 
                         className="close-button"
-                        onClick={() => this.props.toggleModal()}
+                        onClick={() => this.toggleModal()}
                     />
                  <section className="modal-body">
                  

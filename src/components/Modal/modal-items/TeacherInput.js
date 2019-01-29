@@ -1,18 +1,21 @@
 import React from 'react'
 
 const TeacherInput = props => {
+ let {teacherName, teacherEmail} = props.teacherState;
  return (
-  <div class="modal-body-wrapper">
+  <div className="modal-body-wrapper">
   <p>Enter New Employee Name:</p>
    <input type="text"
     placeholder="Name"
     className="user-input"
-    onChange={(e) => props.handleChange("Teacher Name", e.target.value)} />
+    value={teacherName} 
+    onChange={(e) => props.handleChange("teacherName", e.target.value)} />
    <span className="alert" id="alert_name"></span>
    <input type="text"
     placeholder="Email"
     className="user-input"
-    onChange={(e) => props.handleChange("Email", e.target.value)} />
+    value={teacherEmail} 
+    onChange={(e) => props.handleChange("teacherEmail", e.target.value)} />
    <span className="alert" id="alert_pin"></span>
   </div>
  )

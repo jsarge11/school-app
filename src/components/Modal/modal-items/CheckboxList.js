@@ -1,24 +1,32 @@
 import React from 'react'
 import Checkbox from './Checkbox';
 
+let grades = [
+    "K",
+    "1st",
+    "2nd",
+    "3rd",
+    "4th",
+    "5th",
+    "6th",
+    "7th",
+    "8th",
+    "9th",
+    "10th",
+    "11th",
+    "12th"
+]
+
 export default function CheckboxList(props) {
+    let { handleCheckbox, teacherState } = props;
+    let checkboxDisplay = grades.map(item => {
+        return <Checkbox key={item} teacherState={teacherState} handleCheckbox={handleCheckbox} grade={item} />
+    })
     return (
         <span className="modal-radio">
         <p>Select Grades Taught (if any)</p>
             <div className="grade-wrapper">
-                <Checkbox grade="K" />
-                <Checkbox grade="1st" />
-                <Checkbox grade="2nd" />
-                <Checkbox grade="3rd" />
-                <Checkbox grade="4th" />
-                <Checkbox grade="5th" />
-                <Checkbox grade="6th" />
-                <Checkbox grade="7th" />
-                <Checkbox grade="8th" />
-                <Checkbox grade="9th" />
-                <Checkbox grade="10th" />
-                <Checkbox grade="11th" />
-                <Checkbox grade="12th" />
+               {checkboxDisplay}
             </div>
         </span>
     )
