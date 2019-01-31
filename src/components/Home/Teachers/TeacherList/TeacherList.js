@@ -1,7 +1,6 @@
 import React from 'react'
 import './teacherlist.css'
 import { connect } from 'react-redux'
-import { toWordGrade } from '../../../../assets/fns/functions';
 
 
 function TeacherList(props) {
