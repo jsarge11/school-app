@@ -35,7 +35,7 @@ class ListItem extends Component {
                         {this.props.InformationalComponent}
                         &nbsp;
                         {/* nested ternary alert */}
-                        {this.props.editFn ? <button className="item-button" onClick={() => this.setState({ editToggle: true })}> Edit</button> : ''}
+                        {this.props.editFn ? <button className="item-button" onClick={() => this.setState({ editToggle: true })}> Edit </button> : ''}
                     </div>
                     :
                     <div className="item-name-wrapper">
@@ -52,7 +52,7 @@ class ListItem extends Component {
 
                     </div>
                 }
-                <p className="item-button" onClick={() => this.props.deleteFn(item.id)}>Delete</p>
+                {!item.principal ?<p className="item-button" onClick={() => this.props.deleteFn(item.id)}>Delete</p> : ''}
             </article>
         )
     }

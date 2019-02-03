@@ -9,11 +9,13 @@ import TeacherInformationComponent from '../../ListItem/InformationalComponents/
 
 class TeacherList extends Component {
     state = {
-        modalToggle: false
+        modalToggle: false,
+        schoolName: ''
     }
 
 componentDidMount() {
     axios.get('http://localhost:4000/teachers?id=' + this.props.user.school_id).then(res => {
+        console.log(res.data);
         this.props.setTeacherList(res.data);
     })
 }
@@ -26,7 +28,7 @@ deleteTeacher = (id) => {
     })
     .catch((error) => {
         if (error.response) {
-            console.log(error.response.data.code)
+            console.log(error.response)
             if (error.response.data.code === '23503') {
                 alert('Teacher still has classrooms, please delete classrooms first.')
             }
@@ -41,6 +43,10 @@ deleteTeacher = (id) => {
     })
 }
 render() {
+    let school_name;
+    if (this.props.teacherList[0]) {
+        school_name = this.props.teacherList[0].school_name;
+    }
     let teachers = this.props.teacherList.map(item => {
         console.log(item);
         return (
@@ -54,8 +60,11 @@ render() {
     })
         return (
            <div id="teacher-wrapper">
+           <header id="list-header">
+                    <h2> Teachers at {school_name} </h2>
+                    <button className="item-button" onClick={() => this.toggleModal()}> Add Teacher </button>
+            </header>
            
-            <button onClick={() => this.toggleModal()}> Add Teacher </button>
             {teachers}
             <Modal
                 screens={4} 
