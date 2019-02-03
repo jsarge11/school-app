@@ -1,0 +1,9 @@
+#teacher-info-wrapper {
+ display: flex;
+ width: 100%;
+}
+.teacher-info-item-wrapper {
+ display: flex;
+ min-width: 40%;
+ max-width: 40%;
+}

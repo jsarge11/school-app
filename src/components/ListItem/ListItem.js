@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setClassroom } from '../../ducks/reducer'
 import './listitem.css'
@@ -28,18 +27,15 @@ class ListItem extends Component {
 
     render() {
         let { item } = this.props;
+        console.log(this.props);
         return (
             <article className="item-wrapper">
                 {!this.state.editToggle ?
                     <div className="item-name-wrapper">
-                        <section className="item-name-text-wrapper">
-                            <p> Classroom Name: </p> &nbsp;
-                            <Link onClick={() => this.props.setClassroom(item)} to={`/classrooms/gradebook`}>
-                                <span className="classroom-name">{item.name}</span>
-                            </Link>
-                        </section>
+                        {this.props.InformationalComponent}
                         &nbsp;
-                        <button className="item-button" onClick={() => this.setState({ editToggle: true })}> Edit</button>
+                        {/* nested ternary alert */}
+                        {this.props.editFn ? <button className="item-button" onClick={() => this.setState({ editToggle: true })}> Edit</button> : ''}
                     </div>
                     :
                     <div className="item-name-wrapper">

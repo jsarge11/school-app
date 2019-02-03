@@ -17,7 +17,7 @@ componentDidUpdate(prevProps) {
 
         //bringing in data for each student, didn't use a join statement because of the amount of data returned
         studentList.forEach(item => {
-            promises.push(axios.get(`/math/score?id=${item.st_id}`))
+            promises.push(axios.get(`/math/score?id=${item.id}`))
         })
         axios.all(promises).then(res => {
             this.setState({ studentData: res })

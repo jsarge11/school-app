@@ -2,7 +2,7 @@ import React from 'react'
 
 const AddClassroom = props => {
  return (
-  <div class="modal-body-wrapper">
+  <div className="modal-body-wrapper">
    <input type="text"
     placeholder="Name"
     className="user-input"

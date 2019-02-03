@@ -12,7 +12,7 @@ class Classrooms extends Component {
       axios.get('http://localhost:4000/auth/user').then(res => {
         this.props.setUser(res.data);
       }).catch(() => this.props.history.push('/'))
-
+      console.log(this.props.classroom.id);
       axios.get('http://localhost:4000/students?id=' + this.props.classroom.id).then(res => {
           this.props.setStudentList(res.data);
       })

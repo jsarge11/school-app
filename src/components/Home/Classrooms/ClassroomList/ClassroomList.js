@@ -5,6 +5,7 @@ import ListItem from '../../../ListItem/ListItem'
 import { connect } from 'react-redux'
 import { setClassroomList } from '../../../../ducks/reducer'
 import Modal from '../../../Modal/Modal';
+import ClassroomInformationComponent from '../../../ListItem/InformationalComponents/ClassroomInformationComponent'
 
 
 class ClassroomList extends Component {
@@ -59,7 +60,8 @@ class ClassroomList extends Component {
                     item={item}
                     handleChange={this.handleChange}
                     editFn={this.editClassroomName}
-                    deleteFn={this.deleteClassroom} />
+                    deleteFn={this.deleteClassroom}
+                    InformationalComponent={<ClassroomInformationComponent item={item}/>} />
             )
         })
         return (

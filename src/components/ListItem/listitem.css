@@ -11,7 +11,7 @@ margin: 10px;
 .item-name-wrapper {
 display: flex;
 justify-content: space-between;
-width: 50%;
+width: 80%;
 text-align: left;
 }
 .item-button {
@@ -28,6 +28,7 @@ padding: 5px 10px 10px 10px;
 .item-name-text-wrapper {
    display: flex;
    overflow: hidden;
+   width: 100%;
 }
 .item-button:hover {
 box-shadow: rgba(0,0,0,.25) 0px 0px 10px 1px;

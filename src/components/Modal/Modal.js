@@ -143,7 +143,6 @@ class Modal extends Component {
             school_id: this.props.user.school_id
         }
         axios.post('/teachers', teacherObj).then(response => {
-            console.log(response.data);
            this.props.setTeacherList(response.data);
            this.toggleModal();
         }).catch(error => console.log(error))

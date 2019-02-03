@@ -6,7 +6,7 @@ import HomeNav from './HomeNav/HomeNav'
 import ClassroomList from './Classrooms/ClassroomList/ClassroomList'
 import axios from 'axios'
 import './home.css'
-import Teachers from './Teachers/Teachers';
+import TeacherList from './TeacherList/TeacherList';
 axios.defaults.withCredentials = true;
 
 class Home extends Component {
@@ -21,7 +21,7 @@ render() {
      <div id="home-wrapper">
       <HomeNav />
       <ClassroomList/>
-      {this.props.user.principal ? <Teachers /> : ''}
+      {this.props.user.principal ? <TeacherList /> : ''}
     </div>
     )
    }
