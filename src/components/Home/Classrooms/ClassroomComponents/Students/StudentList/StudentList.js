@@ -11,8 +11,8 @@ class StudentList extends Component {
 state = {
   assessmentValue: 1
 }
-deleteStudent = (id, classroom_id) => {
-  axios.delete(`/students?id=${id}&classroom_id=${classroom_id}`).then(res => {
+deleteStudent = (id, c_id) => {
+  axios.delete(`/students?id=${id}&c_id=${c_id}`).then(res => {
     this.props.setStudentList(res.data[0]);
   }).catch(error => console.log(error))
 }
@@ -31,7 +31,7 @@ render() {
       <p>GRADE: {student.grade}</p>
       <StudentAssessments student={student}/>
       <Scores student={student} />
-      <p className="delete-student" style={{cursor: 'pointer'}} onClick={() => this.deleteStudent(student.st_id, student.classroom_id)}>&#128465;</p>
+      <p className="delete-student" style={{cursor: 'pointer'}} onClick={() => this.deleteStudent(student.st_id, student.c_id)}>&#128465;</p>
      </div>
     )
    })

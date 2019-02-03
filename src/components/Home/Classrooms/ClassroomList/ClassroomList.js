@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './classroomlist.css'
 import axios from 'axios';
-import ListItem from './ListItem/ListItem'
+import ListItem from '../../../ListItem/ListItem'
 import { connect } from 'react-redux'
 import { setClassroomList } from '../../../../ducks/reducer'
 import Modal from '../../../Modal/Modal';
@@ -15,7 +15,7 @@ class ClassroomList extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.user !== prevProps.user) {
-            axios.get('http://localhost:4000/classrooms?id=' + this.props.user.t_id).then(res => {
+            axios.get('http://localhost:4000/classrooms?id=' + this.props.user.id).then(res => {
                 this.props.setClassroomList(res.data);
             })
         }
@@ -31,15 +31,15 @@ class ClassroomList extends Component {
         this.setState({ [`${field}`]: e.target.value })
     }
 
-    editClassroomName = (clsr_id) => {
+    editClassroomName = (id) => {
         let { newName } = this.state;
-        axios.put('http://localhost:4000/classrooms/name?id=' + clsr_id + '&t_id=' + this.props.user.t_id, { text: newName }).then(res => {
+        axios.put('http://localhost:4000/classrooms/name?id=' + id + '&t_id=' + this.props.user.id, { text: newName }).then(res => {
             this.props.setClassroomList(res.data);
         })
     }
 
-    deleteClassroom = (clsr_id) => {
-        axios.delete('http://localhost:4000/classrooms?id=' + clsr_id + '&t_id=' + this.props.user.t_id).then(res => {
+    deleteClassroom = (id) => {
+        axios.delete('http://localhost:4000/classrooms?c_id=' + id + '&t_id=' + this.props.user.id).then(res => {
             this.props.setClassroomList(res.data);
         }).catch(() => alert('Cannot delete, classroom contains students. Please delete students and try again.'))
     }
@@ -49,17 +49,17 @@ class ClassroomList extends Component {
     }
     //ordering list the same way everytime
     compare = (a, b) => {
-        return a.clsr_id - b.clsr_id;
+        return a.id - b.id;
     }
 
     render() {
         let classrooms = this.props.classroomList.sort(this.compare).map((item, i) => {
             return (
-                <ListItem key={item.clsr_id}
-                    classroom={item}
+                <ListItem key={item.id}
+                    item={item}
                     handleChange={this.handleChange}
-                    editClassroomName={this.editClassroomName}
-                    deleteClassroom={this.deleteClassroom} />
+                    editFn={this.editClassroomName}
+                    deleteFn={this.deleteClassroom} />
             )
         })
         return (

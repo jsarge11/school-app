@@ -124,7 +124,7 @@ class Modal extends Component {
                 pin: this.state.pin,
                 classroomName: this.state.classroomName 
             }
-            axios.post(`/classrooms?id=${this.props.user.t_id}`, newObj).then(res => {
+            axios.post(`/classrooms?id=${this.props.user.id}`, newObj).then(res => {
                 this.props.setClassroomList(res.data);
                 this.props.toggleModal();
             }).catch(error => console.log(error))

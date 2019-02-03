@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { setClassroom } from '../../../../../ducks/reducer'
+import { setClassroom } from '../../ducks/reducer'
 import './listitem.css'
 
 class ListItem extends Component {
     state = {
-        classroomEdit: false,
+        editToggle: false,
     }
 
     handleEnter = (e) => {
@@ -16,30 +16,30 @@ class ListItem extends Component {
     }
     handleEscape = (e) => {
         if (e.key === 'Escape') {
-            this.setState({ classroomEdit: false })
+            this.setState({ editToggle: false })
         }
     }
 
     handleSubmit = () => {
-        let { classroom } = this.props;
-        this.props.editClassroomName(classroom.clsr_id);
-        this.setState({ classroomEdit: false })
+        let { item } = this.props;
+        this.props.editFn(item.id);
+        this.setState({ editToggle: false })
     }
 
     render() {
-        let { classroom } = this.props;
+        let { item } = this.props;
         return (
             <article className="item-wrapper">
-                {!this.state.classroomEdit ?
+                {!this.state.editToggle ?
                     <div className="item-name-wrapper">
                         <section className="item-name-text-wrapper">
                             <p> Classroom Name: </p> &nbsp;
-            <Link onClick={() => this.props.setClassroom(classroom)} to={`/classrooms/gradebook`}>
-                                <span className="classroom-name">{classroom.name}</span>
+                            <Link onClick={() => this.props.setClassroom(item)} to={`/classrooms/gradebook`}>
+                                <span className="classroom-name">{item.name}</span>
                             </Link>
                         </section>
                         &nbsp;
-           <button className="item-button" onClick={() => this.setState({ classroomEdit: true })}> Edit</button>
+                        <button className="item-button" onClick={() => this.setState({ editToggle: true })}> Edit</button>
                     </div>
                     :
                     <div className="item-name-wrapper">
@@ -51,12 +51,12 @@ class ListItem extends Component {
                                 onChange={(e) => this.props.handleChange("newName", e)}
                             />
                             <button className="item-button" onClick={() => this.handleSubmit()}> Submit </button>
-                            <button className="item-button" onClick={() => this.setState({ classroomEdit: false, classroomName: '' })}> Exit </button>
+                            <button className="item-button" onClick={() => this.setState({ editToggle: false, classroomName: '' })}> Exit </button>
                         </section>
 
                     </div>
                 }
-                <p className="item-button" onClick={() => this.props.deleteClassroom(classroom.clsr_id)}>Delete</p>
+                <p className="item-button" onClick={() => this.props.deleteFn(item.id)}>Delete</p>
             </article>
         )
     }

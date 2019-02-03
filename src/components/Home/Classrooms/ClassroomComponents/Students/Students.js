@@ -20,7 +20,7 @@ state = {
 }
 
 componentDidMount() {
-    axios.get('http://localhost:4000/students?id=' + this.props.classroom.clsr_id).then(res => {
+    axios.get('http://localhost:4000/students?id=' + this.props.classroom.id).then(res => {
         this.props.setStudentList(res.data);
     })
 }
@@ -32,12 +32,12 @@ addStudent = () => {
     if (!this.state.username) {
         Object.assign(newStudent, this.state, {
             username: this.state.first_name+this.state.last_name,
-            clsr_id: this.props.classroom.clsr_id
+            id: this.props.classroom.id
         })
     }
     else {
         Object.assign(newStudent, this.state, {
-            clsr_id: this.props.classroom.clsr_id
+            id: this.props.classroom.id
         })
     }
     //making state null
