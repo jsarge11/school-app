@@ -14,7 +14,7 @@ render() {
    return (
      <div id="landingnav-wrapper">
       <Link to="/"><li id="logo-text"> Fluency Masters </li></Link>
-      <li id="teacher-login-button" onClick={()=>this.setState({ teacherLogin: !this.state.teacherLogin })}> Teacher Login </li>
+      {/* <li id="teacher-login-button" onClick={()=>this.setState({ teacherLogin: !this.state.teacherLogin })}> Teacher Login </li> */}
       <Login className="login" idName={idName} />
      </div>
     )

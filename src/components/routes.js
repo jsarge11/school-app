@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Landing from './Landing/Landing'
 import Home from './Home/Home'
-import Classrooms from './Home/Classrooms/Classrooms'
+import Classrooms from './Home/ClassroomComponents/Classrooms'
 import './routes.css'
 
 export default (
