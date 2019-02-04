@@ -1,0 +1,9 @@
+.student-text-wrapper {
+ display: flex;
+ width: 75%;
+}
+.student-info-text-wrapper {
+ display: flex;
+ min-width: 40%;
+ max-width: 40%;
+}

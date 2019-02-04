@@ -9,7 +9,6 @@
 }
 #teacher-login-button {
     cursor: pointer;
-    font-family: 'Luckiest Guy', cursive;
     font-size: 30px;
 }
 #teacher-login-button:hover {
@@ -17,6 +16,4 @@
 }
 #logo-text {
     font-size: 50px;
-    font-family: 'Luckiest Guy', cursive;
-    text-decoration: underline;
 }

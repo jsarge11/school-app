@@ -21,8 +21,8 @@ render() {
     else {
             return (
             <div id="gradebook-wrapper">
-                <p>Classroom: {this.props.classroom.name} &nbsp; Classroom PIN: {this.props.classroom.pin}
-                    <span onClick={() => this.toggleEdit()}id="pin-edit">&#9998;</span></p>
+                <h2>Classroom: {this.props.classroom.name} &nbsp; Classroom PIN: {this.props.classroom.pin}
+                </h2>
                     <StudentGrades />
             </div>
             )

@@ -3,6 +3,8 @@ import './studentgrades.css'
 import { connect } from 'react-redux'
 import { setStudentList } from '../../../../../../ducks/reducer'
 import axios from 'axios';
+import ListItem from '../../../../../ListItem/ListItem'
+import StudentInformationComponent from '../../../../../ListItem/InformationalComponents/StudentInformationComponent'
 
 
 class StudentGrades extends Component {
@@ -10,32 +12,38 @@ class StudentGrades extends Component {
         promises: [],
         studentData: []
     }
-componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
+componentDidMount() {
         let promises = [];
         let { studentList } = this.props;
+        console.log(studentList);
 
-        //bringing in data for each student, didn't use a join statement because of the amount of data returned
+        //bringing in data for each student
+
         studentList.forEach(item => {
             promises.push(axios.get(`/math/score?id=${item.id}`))
         })
         axios.all(promises).then(res => {
             this.setState({ studentData: res })
         })
-    }
+}
+
+deleteStudent(id) {
+    console.log(id);
 }
 componentWillUnmount() {
     this.props.setStudentList([]);
 }
-showScores(id) {
-
-}
 render() {
-        let students = this.props.studentList.map((item, i) => {
+        let students = this.props.studentList.map((item, i) => 
+        {
             return (
-                <div key={item.st_id}>
-                    <p>{item.first_name}</p>
-                </div>
+                <ListItem 
+                    key={item.id}
+                    item={item}
+                    deleteFn={this.deleteStudent}
+                    InformationalComponent={<StudentInformationComponent item={item}
+                />} 
+                />
             )
         })
         return (

@@ -27,7 +27,6 @@ class ListItem extends Component {
 
     render() {
         let { item } = this.props;
-        console.log(this.props);
         return (
             <article className="item-wrapper">
                 {!this.state.editToggle ?

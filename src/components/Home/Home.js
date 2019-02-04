@@ -20,8 +20,8 @@ render() {
    return (
      <div id="home-wrapper">
       <HomeNav />
-      <ClassroomList/>
       {this.props.user.principal ? <TeacherList /> : ''}
+      <ClassroomList/>
     </div>
     )
    }
