@@ -11,7 +11,7 @@ axios.defaults.withCredentials = true;
 
 class Home extends Component {
   componentDidMount() {
-    axios.get('http://localhost:4000/auth/user').then(res => {
+    axios.get('/auth/user').then(res => {
         this.props.setUser(res.data)
     }).catch(()=>this.props.history.push('/'))
   }

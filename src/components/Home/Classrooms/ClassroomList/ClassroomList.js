@@ -16,7 +16,7 @@ class ClassroomList extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.user !== prevProps.user) {
-            axios.get('http://localhost:4000/classrooms?id=' + this.props.user.id).then(res => {
+            axios.get('/classrooms?id=' + this.props.user.id).then(res => {
                 this.props.setClassroomList(res.data);
             })
         }
@@ -34,13 +34,13 @@ class ClassroomList extends Component {
 
     editClassroomName = (id) => {
         let { newName } = this.state;
-        axios.put('http://localhost:4000/classrooms/name?id=' + id + '&t_id=' + this.props.user.id, { text: newName }).then(res => {
+        axios.put('/classrooms/name?id=' + id + '&t_id=' + this.props.user.id, { text: newName }).then(res => {
             this.props.setClassroomList(res.data);
         })
     }
 
     deleteClassroom = (id) => {
-        axios.delete('http://localhost:4000/classrooms?c_id=' + id + '&t_id=' + this.props.user.id).then(res => {
+        axios.delete('/classrooms?c_id=' + id + '&t_id=' + this.props.user.id).then(res => {
             this.props.setClassroomList(res.data);
         }).catch(() => alert('Cannot delete, classroom contains students. Please delete students and try again.'))
     }

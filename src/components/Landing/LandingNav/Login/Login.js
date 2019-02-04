@@ -13,7 +13,7 @@ class Login extends Component {
     }
 
 componentDidMount() {
-    axios.get('http://localhost:4000/auth/user').then(res => {
+    axios.get('/auth/user').then(res => {
         this.props.history.push('/home');
     }).catch(()=> console.log('Not logged in.'))
 }
@@ -25,11 +25,11 @@ handleChange = (field, e) => {
 login = () => {
     this.setState({alertMessage: ''}, () => {
         let temp = this.state.email;
-        axios.get('http://localhost:4000/auth/user?email=' + temp).then(res => {
+        axios.get('/auth/user?email=' + temp).then(res => {
             if (bcrypt.compareSync(this.state.password, res.data)) {
                 console.log('password correct');
                 this.setState({ email: '', password: ''})
-                axios.post('http://localhost:4000/auth/user?email='+ temp).then(res => {
+                axios.post('/auth/user?email='+ temp).then(res => {
                     console.log('pushing to home');
                     this.props.history.push('/home');
                 }).catch(error => console.log(error))

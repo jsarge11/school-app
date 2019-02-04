@@ -9,11 +9,11 @@ import './classrooms.css'
 class Classrooms extends Component {
   componentDidMount() {
     if (this.props.classroom) {
-      axios.get('http://localhost:4000/auth/user').then(res => {
+      axios.get('/auth/user').then(res => {
         this.props.setUser(res.data);
       }).catch(() => this.props.history.push('/'))
       console.log(this.props.classroom.id);
-      axios.get('http://localhost:4000/students?id=' + this.props.classroom.id).then(res => {
+      axios.get('/students?id=' + this.props.classroom.id).then(res => {
           this.props.setStudentList(res.data);
       })
     }

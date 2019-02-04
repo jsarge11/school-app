@@ -11,7 +11,7 @@ class Courses extends Component {
         courses: []
     }
     componentDidMount() {
-        axios.get('http://localhost:4000/courses').then(res => {
+        axios.get('/courses').then(res => {
             this.setState({ courses: res.data })
         })
     }

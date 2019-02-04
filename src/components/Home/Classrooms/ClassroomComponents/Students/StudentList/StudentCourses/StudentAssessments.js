@@ -11,7 +11,7 @@ export default class StudentAssessments extends React.Component {
         assessmentValue: 1
     }
     componentDidMount() {
-        axios.get('http://localhost:4000/math/assessments/student?id=' + this.props.student.st_id).then(res => {
+        axios.get('/math/assessments/student?id=' + this.props.student.st_id).then(res => {
             if (res.data[0].assessments) {
                 this.setState({ assessments: res.data[0].assessments })
             }
@@ -23,7 +23,7 @@ export default class StudentAssessments extends React.Component {
             alert('Student is already enrolled in that assessment.')
         }
         else {
-            axios.post('http://localhost:4000/math/assessments?id=' + id, {assessmentValue: assessmentValue}).then(res => {
+            axios.post('/math/assessments?id=' + id, {assessmentValue: assessmentValue}).then(res => {
                 this.setState({ assessments: res.data[0].assessments })
             })
         }

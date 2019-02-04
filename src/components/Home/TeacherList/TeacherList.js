@@ -14,7 +14,7 @@ class TeacherList extends Component {
     }
 
 componentDidMount() {
-    axios.get('http://localhost:4000/teachers?id=' + this.props.user.school_id).then(res => {
+    axios.get('/teachers?id=' + this.props.user.school_id).then(res => {
         console.log(res.data);
         this.props.setTeacherList(res.data);
     })
@@ -23,7 +23,7 @@ toggleModal = () => {
     this.setState({ modalToggle: !this.state.modalToggle})
 }
 deleteTeacher = (id) => {
-    axios.delete('http://localhost:4000/teachers?id=' + id).then(res => {
+    axios.delete('/teachers?id=' + id).then(res => {
         this.props.setTeacherList(res.data);
     })
     .catch((error) => {

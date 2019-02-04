@@ -20,7 +20,7 @@ state = {
 }
 
 componentDidMount() {
-    axios.get('http://localhost:4000/students?id=' + this.props.classroom.id).then(res => {
+    axios.get('/students?id=' + this.props.classroom.id).then(res => {
         this.props.setStudentList(res.data);
     })
 }
@@ -45,7 +45,7 @@ addStudent = () => {
         this.setState({ [`${key}`] : '' })
     }
 
-    axios.post('http://localhost:4000/students', newStudent).then(res => {
+    axios.post('/students', newStudent).then(res => {
         this.props.setStudentList(res.data);
     })
 }
