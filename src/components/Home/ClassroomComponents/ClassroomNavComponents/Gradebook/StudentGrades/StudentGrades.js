@@ -5,7 +5,7 @@ import { setStudentList } from '../../../../../../ducks/reducer'
 import axios from 'axios';
 import ListItem from 
 '../../../../../GlobalComponents/ListItem/ListItem'
-import StudentInformationComponent from '../../../../../GlobalComponents/ListItem/InformationalComponents/StudentInformationComponent'
+import StudentGradeInformationalComponent from '../../../../../GlobalComponents/ListItem/InformationalComponents/StudentGradeInformationalComponent'
 
 
 class StudentGrades extends Component {
@@ -42,7 +42,7 @@ render() {
                     key={item.id}
                     item={item}
                     deleteFn={this.deleteStudent}
-                    InformationalComponent={<StudentInformationComponent item={item}
+                    InformationalComponent={<StudentGradeInformationalComponent item={item}
                 />} 
                 />
             )

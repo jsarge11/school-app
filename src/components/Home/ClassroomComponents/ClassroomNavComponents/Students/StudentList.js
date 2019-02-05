@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import StudentList from './StudentList/StudentList'
 import { setStudentList } from '../../../../../ducks/reducer'
 import { withRouter, Redirect } from 'react-router-dom'
-import './students.css'
 import axios from 'axios';
+import ListItem from '../../../../GlobalComponents/ListItem/ListItem';
+import StudentInformationalComponent from '../../../../GlobalComponents/ListItem/InformationalComponents/StudentInformationalComponent';
 
-class Students extends Component {
+class StudentList extends Component {
 
 state = {
     addStudent: false,
@@ -49,6 +49,13 @@ addStudent = () => {
         this.props.setStudentList(res.data);
     })
 }
+
+deleteStudent = (id, c_id) => {
+    axios.delete(`/students?id=${id}&c_id=${c_id}`).then(res => {
+      this.props.setStudentList(res.data[0]);
+    }).catch(error => console.log(error))
+}
+
 handleChange = (field, e) => {
     if (field === "pin" || field === "points") {
         this.setState({ [`${field}`]: e.target.value.slice(0, 4) })
@@ -63,20 +70,33 @@ render() {
         return <Redirect push to="/home" />
     }
     else {
+        let students = this.props.studentList.map(item => {
             return (
-            <div id="student-wrapper">
-                {/* Students for classroom {this.props.classroom.name} */}
-                <StudentList />
+             <ListItem 
+                key={item.id}
+                item={item}
+                handleChange={this.handleChange}
+                deleteFn={this.deleteStudent}
+                InformationalComponent={<StudentInformationalComponent item={item}/>}
+             
+             />
+            )
+           })
+            return (
+            <div>
+                <h1>Student List</h1>
+                {students}
             </div>
             )
         }
     }
 }
 function mapStateToProps(state) {
-    let {classroomList, classroom } = state;
+    let {classroomList, classroom, studentList } = state;
     return {
         classroom,
-        classroomList
+        classroomList,
+        studentList
     }
 }
-export default withRouter(connect(mapStateToProps, { setStudentList })(Students))
+export default withRouter(connect(mapStateToProps, { setStudentList })(StudentList))

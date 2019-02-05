@@ -51,6 +51,7 @@ class ListItem extends Component {
 
                     </div>
                 }
+                {/* should teachers be able to delete students? */}
                 {!item.principal ?<p className="item-button" onClick={() => this.props.deleteFn(item.id)}>Delete</p> : ''}
             </article>
         )

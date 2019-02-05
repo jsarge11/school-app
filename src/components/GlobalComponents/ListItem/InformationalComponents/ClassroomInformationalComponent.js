@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { setClassroom } from '../../../../ducks/reducer'
 import { connect } from 'react-redux'
 
-const ClassroomInformationComponent = props => {
+const ClassroomInformationalComponent = props => {
  return (
   <section className="item-name-text-wrapper">
    <p> Classroom Name: </p> &nbsp;
@@ -13,4 +13,4 @@ const ClassroomInformationComponent = props => {
   </section>
  )
 }
-export default connect(null, { setClassroom })(ClassroomInformationComponent)
+export default connect(null, { setClassroom })(ClassroomInformationalComponent)

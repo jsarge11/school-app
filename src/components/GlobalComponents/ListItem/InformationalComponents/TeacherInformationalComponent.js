@@ -1,7 +1,7 @@
 import React from 'react'
 import './css/teacherlist.css'
 
-const TeacherInformationComponent = props => {
+const TeacherInformationalComponent = props => {
   let { item } = props;
   let grades = "none";
       if (item.grades) {
@@ -19,4 +19,4 @@ const TeacherInformationComponent = props => {
           </section>
       )
 }
-export default TeacherInformationComponent
+export default TeacherInformationalComponent

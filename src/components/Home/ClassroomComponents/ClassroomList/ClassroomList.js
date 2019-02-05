@@ -5,7 +5,7 @@ import ListItem from '../../../GlobalComponents/ListItem/ListItem'
 import { connect } from 'react-redux'
 import { setClassroomList } from '../../../../ducks/reducer'
 import Modal from '../../../GlobalComponents/Modal/Modal';
-import ClassroomInformationComponent from '../../../GlobalComponents/ListItem/InformationalComponents/ClassroomInformationComponent'
+import ClassroomInformationComponent from '../../../GlobalComponents/ListItem/InformationalComponents/ClassroomInformationalComponent'
 
 
 class ClassroomList extends Component {

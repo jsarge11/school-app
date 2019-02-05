@@ -3,7 +3,7 @@ import HomeNav from '../HomeNav/HomeNav'
 import ClassroomNav from './ClassroomNavComponents/ClassroomNav'
 import Gradebook from './ClassroomNavComponents/Gradebook/Gradebook'
 import Points from './ClassroomNavComponents/Points/Points'
-import Students from './ClassroomNavComponents/Students/Students'
+import Students from './ClassroomNavComponents/Students/StudentList'
 import { Switch, Route } from 'react-router-dom'
 import Courses from './ClassroomNavComponents/Courses/Courses';
 

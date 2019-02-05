@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import { setTeacherList } from '../../../../ducks/reducer'
 import ListItem from '../../../GlobalComponents/ListItem/ListItem';
-import TeacherInformationComponent from '../../../GlobalComponents/ListItem/InformationalComponents/TeacherInformationComponent'
+import TeacherInformationComponent from '../../../GlobalComponents/ListItem/InformationalComponents/TeacherInformationalComponent'
 
 class TeacherList extends Component {
     state = {
