@@ -7,12 +7,12 @@ export default class BreadCrumbs extends Component {
   }
   
   componentSwitch = (crumbsArr) => {
-    let { crumbs, active, addTeacher, nextPage, prevPage } = this.props;
+    let { crumbs, active, addFn, nextPage, prevPage, listCategory } = this.props;
     console.log(crumbs, active);
     if (crumbs === active + 1) {
       return <span className="add-teacher-wrapper">
           <button className="modal-button" disabled={active === 0} onClick={() => prevPage()}>Prev</button>
-          <AddButton fn={addTeacher} addName="Teacher" />
+          <AddButton fn={addFn} addName={listCategory}/>
         </span>
     }
     else {

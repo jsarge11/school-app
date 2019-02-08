@@ -4,6 +4,7 @@
  align-items: center;
  position: absolute;
  bottom: 5%;
+ width: 75%;
 }
 .crumb-item {
  border-radius: 50%;

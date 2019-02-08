@@ -6,12 +6,12 @@ const AddClassroom = props => {
    <input type="text"
     placeholder="Name"
     className="user-input"
-    onChange={(e) => props.handleChange("classroomName", e.target.value)} />
+    onChange={(e) => props.handleChange("classroomName", e)} />
    <span className="alert" id="alert_name"></span>
    <input type="number"
     placeholder="PIN"
     className="user-input"
-    onChange={(e) => props.handleChange("pin", e.target.value)} />
+    onChange={(e) => props.handleChange("pin", e)} />
    <span className="alert" id="alert_pin"></span>
   </div>
  )

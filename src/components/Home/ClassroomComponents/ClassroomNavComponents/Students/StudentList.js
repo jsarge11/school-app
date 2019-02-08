@@ -5,17 +5,18 @@ import { withRouter, Redirect } from 'react-router-dom'
 import axios from 'axios';
 import ListItem from '../../../../GlobalComponents/ListItem/ListItem';
 import StudentInformationalComponent from '../../../../GlobalComponents/ListItem/InformationalComponents/StudentInformationalComponent';
+import Modal from '../../../../GlobalComponents/Modal/Modal';
 
 class StudentList extends Component {
 
 state = {
-    addStudent: false,
-    first_name: '',
-    last_name: '',
+    modalToggle: false,
+    name: '',
     username: '',
     pin: '0000',
     points: 0,
-    grade: ''
+    grade: '',
+    confirmDelete: false
 }
 
 componentDidMount() {
@@ -24,7 +25,9 @@ componentDidMount() {
         this.props.setStudentList(res.data);
     })
 }
-
+toggleModal = () => {
+    this.setState({ modalToggle: !this.state.modalToggle})
+}
 addStudent = () => {
     let newStudent = {};
     this.setState({ addStudent: false })
@@ -50,10 +53,13 @@ addStudent = () => {
     })
 }
 
+confirmDelete() {
+    let { confirmDelete } = this.state;
+}
 deleteStudent = (id, c_id) => {
     axios.delete(`/students?id=${id}&c_id=${c_id}`).then(res => {
-      this.props.setStudentList(res.data[0]);
-    }).catch(error => console.log(error))
+      this.props.setStudentList(res.data);
+    })
 }
 
 handleChange = (field, e) => {
@@ -77,15 +83,26 @@ render() {
                 item={item}
                 handleChange={this.handleChange}
                 deleteFn={this.deleteStudent}
+                listCategory="Student"
                 InformationalComponent={<StudentInformationalComponent item={item}/>}
-             
              />
             )
            })
             return (
             <div>
-                <h1>Student List</h1>
+                <span id="list-header">
+                    <h1>Student List</h1>
+                    <button className="item-button" onClick={() => this.toggleModal()}>Add Student</button>
+                </span>
                 {students}
+                <Modal 
+                    screens={4}
+                    addName={"Student"}
+                    addFn={this.addStudent}
+                    handleChange={this.handleChange}
+                    modalToggle={this.state.modalToggle}
+                    toggleModal={this.toggleModal}
+                />
             </div>
             )
         }

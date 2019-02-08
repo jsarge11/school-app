@@ -2,6 +2,7 @@ import React from 'react'
 
 const TeacherInput = props => {
  let {teacherName, teacherEmail} = props.teacherState;
+ console.log(teacherName);
  return (
   <div className="modal-body-wrapper">
   <p>Enter New Employee Name:</p>
@@ -9,13 +10,13 @@ const TeacherInput = props => {
     placeholder="Name"
     className="user-input"
     value={teacherName} 
-    onChange={(e) => props.handleChange("teacherName", e.target.value)} />
+    onChange={(e) => props.handleChange("name", e.target.value)} />
    <span className="alert" id="alert_name"></span>
    <input type="text"
     placeholder="Email"
     className="user-input"
     value={teacherEmail} 
-    onChange={(e) => props.handleChange("teacherEmail", e.target.value)} />
+    onChange={(e) => props.handleChange("email", e.target.value)} />
    <span className="alert" id="alert_pin"></span>
   </div>
  )

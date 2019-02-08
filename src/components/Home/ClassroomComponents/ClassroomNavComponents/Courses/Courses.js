@@ -15,6 +15,7 @@ class Courses extends Component {
         })
     }
 render() {
+    console.log(this.props);
     if (!this.props.classroom) {
         return <Redirect push to="/home" />
     }

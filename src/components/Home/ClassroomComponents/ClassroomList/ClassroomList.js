@@ -21,6 +21,54 @@ class ClassroomList extends Component {
             })
         }
     }
+    // checkPIN = () => {
+    //     if (this.state.pin.length < 4) {
+    //         return false;
+    //     }
+    //     else {
+    //         return true;
+    //     }
+    // }
+
+    // checkName = () => {
+    //     if (this.state.classroomName.length < 1) {
+    //         return false;
+    //     }
+    //     else {
+    //         return true;
+    //     }
+    // }
+
+    addClassroom = () => {
+
+        // let isValidName = this.checkName();
+        // let isValidPIN = this.checkPIN();
+
+        // if (!isValidName) {
+        //     document.getElementById("alert_name").innerHTML = "Please enter a non-empty name.";
+        // }
+        // else {
+        //     document.getElementById("alert_name").innerHTML = "";
+        // }
+        // if (!isValidPIN) {
+        //     document.getElementById("alert_pin").innerHTML = "Please enter at least 4 digits.";
+        // }
+        // else {
+        //     document.getElementById("alert_pin").innerHTML = "";
+        // }
+        // if (isValidName && isValidPIN) {         
+            let newObj = {
+                pin: this.state.pin,
+                classroomName: this.state.classroomName 
+            }
+
+        axios.post(`/classrooms?id=${this.props.user.id}`, newObj).then(res => {
+            this.props.setClassroomList(res.data);
+            this.toggleModal();
+        }).catch(error => console.log(error))
+        
+        // }
+    }  
 
     handleEscape = (e) => {
         if (e.key === 'Escape') {
@@ -61,6 +109,7 @@ class ClassroomList extends Component {
                     handleChange={this.handleChange}
                     editFn={this.editClassroomName}
                     deleteFn={this.deleteClassroom}
+                    listCategory={"Classroom"}
                     InformationalComponent={<ClassroomInformationComponent item={item}/>} />
             )
         })
@@ -74,7 +123,9 @@ class ClassroomList extends Component {
                 <Modal 
                     screens={1} 
                     addName="Classroom" 
+                    addFn={this.addClassroom}
                     modalToggle={this.state.modalToggle}
+                    handleChange={this.handleChange}
                     toggleModal={this.toggleModal} 
                 />
             </div>

@@ -21,6 +21,7 @@ function componentSwitch(activeCrumb, handleChange, handleCheckbox, teacherState
  }
 }
 const AddTeacher = props => {
+
  let { handleChange, activeCrumb, handleCheckbox, teacherState } = props;
  let display = componentSwitch(activeCrumb, handleChange, handleCheckbox, teacherState);
  return (

@@ -22,7 +22,7 @@
  justify-content: flex-start;
  border-radius: 45px;
  font-size: 30px;
- padding: 2%;
+ /* padding: 1%; */
 }
 .modal-body-wrapper {
  display: flex;

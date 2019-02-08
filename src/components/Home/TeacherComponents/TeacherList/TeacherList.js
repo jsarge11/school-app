@@ -7,11 +7,17 @@ import { setTeacherList } from '../../../../ducks/reducer'
 import ListItem from '../../../GlobalComponents/ListItem/ListItem';
 import TeacherInformationComponent from '../../../GlobalComponents/ListItem/InformationalComponents/TeacherInformationalComponent'
 
+const initialState = {
+    pin: '',
+    name: '',
+    email: '',
+    teacher: false,
+    admin: false,
+    principal: false,
+    gradesTaught: []
+}
 class TeacherList extends Component {
-    state = {
-        modalToggle: false,
-        schoolName: ''
-    }
+    state = {...initialState}
 
 componentDidMount() {
     axios.get('/teachers?id=' + this.props.user.school_id).then(res => {
@@ -19,8 +25,60 @@ componentDidMount() {
         this.props.setTeacherList(res.data);
     })
 }
+handleChange = (field, value) => {
+    if (field === "teacher" || field === "admin" || field === "principal") {
+        switch(field) {
+            case "principal":
+                this.setState({ teacher: false, admin: false, principal: true })
+                break;
+            case "teacher":
+                this.setState({ teacher: true, admin: false, principal: false })
+                break;
+            case "admin":
+                this.setState({ teacher: false, admin: true, principal: false })
+                break;
+            default:
+                this.setState({ teacher: false, admin: false, principal: false })
+        }
+    }
+    else {
+        this.setState({ [`${field}`] : value})
+    }
+}
+handleCheckbox = (e) => {
+    let arr = this.state.gradesTaught.slice();
+    let index = arr.indexOf(e.target.value)
+    if (index === -1) {
+        arr.push(e.target.value)
+    }
+    else {
+        arr.splice(index, 1);
+    }
+
+    this.setState({ gradesTaught: arr })
+}
+
 toggleModal = () => {
+    this.setState({initialState});
     this.setState({ modalToggle: !this.state.modalToggle})
+}
+
+addTeacher = () => {
+    let {name, email, gradesTaught, admin, principal } = this.state;
+    let { setTeacherList, user } = this.props;
+    let admin_privileges = admin || principal;
+    let teacherObj = {
+        name,
+        admin_privileges,
+        principal,
+        email,
+        grades: gradesTaught,
+        school_id: user.school_id
+    }
+    axios.post('/teachers', teacherObj).then(response => {
+       setTeacherList(response.data);
+       this.toggleModal();
+    }).catch(error => console.log(error))
 }
 deleteTeacher = (id) => {
     axios.delete('/teachers?id=' + id).then(res => {
@@ -43,6 +101,7 @@ deleteTeacher = (id) => {
     })
 }
 render() {
+    console.log(this.state);
     let school_name;
     if (this.props.teacherList[0]) {
         school_name = this.props.teacherList[0].school_name;
@@ -52,6 +111,7 @@ render() {
             <ListItem 
                 key={item.id}
                 item={item}
+                listCategory="Teacher"
                 deleteFn={this.deleteTeacher}
                 InformationalComponent={<TeacherInformationComponent item={item}/>} 
             />
@@ -68,9 +128,13 @@ render() {
             {teachers}
             <Modal
                 screens={4} 
-                addName="Teachers" 
+                addName="Teacher" 
                 modalToggle={this.state.modalToggle}
                 toggleModal={this.toggleModal} 
+                handleCheckbox={this.handleCheckbox}
+                handleChange={this.handleChange}
+                addFn={this.addTeacher}
+                itemObj={this.state}
             />
            </div>
         )

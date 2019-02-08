@@ -8,14 +8,12 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faTimes)
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
       <div className="App">
         {routes}
       </div>
     );
-  }
 }
 
 export default App;
