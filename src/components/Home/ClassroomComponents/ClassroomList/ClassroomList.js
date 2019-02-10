@@ -116,7 +116,7 @@ class ClassroomList extends Component {
         return (
             <div onKeyDown={e => this.handleEscape(e)}>
                 <header id="list-header">
-                    <h2> My Classrooms </h2>
+                    <p> My Classrooms </p>
                     <button className="item-button" onClick={() => this.toggleModal()}> Add Classroom </button>
                 </header>          
                     {classrooms}

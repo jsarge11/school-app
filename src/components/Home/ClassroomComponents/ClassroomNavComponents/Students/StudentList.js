@@ -13,7 +13,7 @@ state = {
     modalToggle: false,
     name: '',
     username: '',
-    pin: '0000',
+    pin: '',
     points: 0,
     grade: '',
     confirmDelete: false
@@ -21,7 +21,6 @@ state = {
 
 componentDidMount() {
     axios.get('/students?id=' + this.props.classroom.id).then(res => {
-        console.log(res.data);
         this.props.setStudentList(res.data);
     })
 }
@@ -53,9 +52,10 @@ addStudent = () => {
     })
 }
 
-confirmDelete() {
-    let { confirmDelete } = this.state;
-}
+// confirmDelete() {
+//     let { confirmDelete } = this.state;
+    
+// }
 deleteStudent = (id, c_id) => {
     axios.delete(`/students?id=${id}&c_id=${c_id}`).then(res => {
       this.props.setStudentList(res.data);
@@ -96,12 +96,13 @@ render() {
                 </span>
                 {students}
                 <Modal 
-                    screens={4}
+                    screens={2}
                     addName={"Student"}
                     addFn={this.addStudent}
                     handleChange={this.handleChange}
                     modalToggle={this.state.modalToggle}
                     toggleModal={this.toggleModal}
+                    itemObj={this.state}
                 />
             </div>
             )

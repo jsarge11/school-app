@@ -1,15 +1,11 @@
 import React from 'react'
 import StudentInput from './modal-items/StudentInput';
 
-function componentSwitch(activeCrumb, handleChange, handleCheckbox, studentObj) {
+function componentSwitch(activeCrumb, handleChange, studentState) {
  switch(activeCrumb) {
   case 0:
-   return <StudentInput handleChange={handleChange} studentObj={studentObj}/>
+   return <StudentInput handleChange={handleChange} studentState={studentState}/>
   case 1:
-   return 'sdfg'
-  case 2:
-   return 'sdfg'
-  case 3: 
    return 'sdfg'
   default:
    return (<div>
@@ -18,8 +14,9 @@ function componentSwitch(activeCrumb, handleChange, handleCheckbox, studentObj) 
  }
 }
 const AddStudent = props => {
- let { handleChange, activeCrumb, handleCheckbox, studentObj } = props;
- let display = componentSwitch(activeCrumb, handleChange, handleCheckbox, studentObj);
+  console.log(props);
+ let { handleChange, activeCrumb, studentState } = props;
+ let display = componentSwitch(activeCrumb, handleChange, studentState);
  return (
    <div>
      {display}

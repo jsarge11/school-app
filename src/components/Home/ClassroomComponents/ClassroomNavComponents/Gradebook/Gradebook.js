@@ -15,7 +15,6 @@ toggleEdit = () => {
     this.setState({ pinEdit: !this.state.pinEdit})
 }
 render() {
-    console.log(this.props)
     if (!this.props.classroom) {
         return <Redirect push to="/home" />
     }

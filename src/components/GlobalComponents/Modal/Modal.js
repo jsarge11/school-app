@@ -8,7 +8,6 @@ import { setClassroomList, setTeacherList } from '../../../ducks/reducer'
 import AddClassroom from './AddClassroom';
 import AddTeacher from './AddTeacher';
 import AddButton from './modal-items/AddButton';
-import axios from 'axios';
 import Breadcrumbs from './modal-items/Breadcrumbs'
 import AddStudent from './AddStudents';
 
@@ -39,7 +38,7 @@ class Modal extends Component {
 
 
     componentSwitch = () => {
-        console.log(this.props);
+
         let { itemObj, addName, handleChange, handleCheckbox } = this.props;
         switch(addName) {
             case("Classroom") :
@@ -57,6 +56,7 @@ class Modal extends Component {
                 return <AddStudent
                     handleChange={handleChange}
                     activeCrumb={this.state.activeCrumb}
+                    studentState={itemObj}
                     />
             default :
                 return <div>Internal Error - Please Contact Web Support with Error #A1111</div>
@@ -72,6 +72,7 @@ class Modal extends Component {
                 <div className="modal-screen-dimmer"></div>
                 <div className="modal">
                     <FontAwesomeIcon 
+                        style={{margin: "20px"}}
                         icon={faTimesCircle} 
                         className="close-button"
                         onClick={() => toggleModal()}
@@ -81,17 +82,20 @@ class Modal extends Component {
                 {this.componentSwitch()}
             
                 {screens <= 1 ? 
-                    <AddButton 
-                        fn={addFn} 
-                        addName={addName} /> :
-                    <Breadcrumbs 
-                        active={this.state.activeCrumb} 
-                        crumbs={screens}
-                        nextPage={this.nextPage}
-                        prevPage={this.prevPage}
-                        addFn={addFn}
-                        listCategory={addName}
-                    />
+                    <span className="breadcrumb-wrapper">
+                        <AddButton 
+                            fn={addFn} 
+                            addName={addName} />
+                    </span> 
+                    :
+                        <Breadcrumbs 
+                            active={this.state.activeCrumb} 
+                            crumbs={screens}
+                            nextPage={this.nextPage}
+                            prevPage={this.prevPage}
+                            addFn={addFn}
+                            listCategory={addName}
+                        />
                 }
                 </section>
                 </div>

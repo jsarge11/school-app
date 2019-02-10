@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StudentInput = props => {
+const StudentInputTwo = props => {
  let {name, username, pin, grade} = props.studentState;
  return (
   <div className="modal-body-wrapper">
@@ -32,4 +32,4 @@ const StudentInput = props => {
   </div>
  )
 }
-export default StudentInput
+export default StudentInputTwo

@@ -21,7 +21,6 @@ class TeacherList extends Component {
 
 componentDidMount() {
     axios.get('/teachers?id=' + this.props.user.school_id).then(res => {
-        console.log(res.data);
         this.props.setTeacherList(res.data);
     })
 }
@@ -86,7 +85,6 @@ deleteTeacher = (id) => {
     })
     .catch((error) => {
         if (error.response) {
-            console.log(error.response)
             if (error.response.data.code === '23503') {
                 alert('Teacher still has classrooms, please delete classrooms first.')
             }
@@ -101,7 +99,6 @@ deleteTeacher = (id) => {
     })
 }
 render() {
-    console.log(this.state);
     let school_name;
     if (this.props.teacherList[0]) {
         school_name = this.props.teacherList[0].school_name;
