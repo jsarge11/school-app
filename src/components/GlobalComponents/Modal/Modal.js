@@ -9,7 +9,9 @@ import AddClassroom from './AddClassroom';
 import AddTeacher from './AddTeacher';
 import AddButton from './modal-items/AddButton';
 import Breadcrumbs from './modal-items/Breadcrumbs'
-import AddStudent from './AddStudents';
+import AddStudent from './AddStudent';
+import grades from '../../../assets/data/grades'
+import mathAssessments from '../../../assets/data/mathAssessments'
 
 class Modal extends Component {
     state = {
@@ -51,12 +53,15 @@ class Modal extends Component {
                     activeCrumb={this.state.activeCrumb}
                     handleCheckbox={handleCheckbox}
                     teacherState={itemObj}
+                    items={grades}
                     />
             case("Student") :
                 return <AddStudent
                     handleChange={handleChange}
                     activeCrumb={this.state.activeCrumb}
+                    handleCheckbox={handleCheckbox}
                     studentState={itemObj}
+                    items={mathAssessments}
                     />
             default :
                 return <div>Internal Error - Please Contact Web Support with Error #A1111</div>

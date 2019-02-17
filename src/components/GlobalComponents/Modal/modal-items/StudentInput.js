@@ -24,7 +24,7 @@ const StudentInput = props => {
     onChange={(e) => props.handleChange("pin", e)} />
 
    <input type="text"
-    placeholder="Email"
+    placeholder="Grade"
     className="user-input"
     value={grade} 
     onChange={(e) => props.handleChange("grade", e)} />

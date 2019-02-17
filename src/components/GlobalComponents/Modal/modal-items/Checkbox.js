@@ -1,7 +1,7 @@
 import React from 'react'
 
-function isTaught(grade, gradesTaught) {
- if (gradesTaught.includes(grade)) {
+function isTaught(item, checkedList) {
+ if (checkedList.includes(item)) {
   return true;
  }
  else {
@@ -9,12 +9,13 @@ function isTaught(grade, gradesTaught) {
  }
 }
 const Checkbox = props => {
- let { gradesTaught } = props.teacherState;
- let { grade } = props;
+ let { gradesTaught, mathAssessments } = props.objectState;
+ let checkedList = gradesTaught || mathAssessments;
+ let { item, handleCheckbox } = props;
 return (
- <label className="input-item checkbox-item" onChange={(e) => props.handleCheckbox(e)}>
-  <input checked={isTaught(grade, gradesTaught)} type="checkbox" value={props.grade} />
-  <p className="checkbox-p">{props.grade}</p>
+ <label className="input-item checkbox-item" onChange={(e) => handleCheckbox(e)}>
+  <input checked={isTaught(item, checkedList)} type="checkbox" value={item} />
+  <p className="checkbox-p">{item}</p>
  </label>  
  )
 }

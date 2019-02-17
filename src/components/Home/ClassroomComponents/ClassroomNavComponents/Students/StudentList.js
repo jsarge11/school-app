@@ -16,6 +16,7 @@ state = {
     pin: '',
     points: 0,
     grade: '',
+    mathAssessments: [],
     confirmDelete: false
 }
 
@@ -70,6 +71,18 @@ handleChange = (field, e) => {
         this.setState({ [`${field}`] : e.target.value })
     }
 }
+handleCheckbox = (e) => {
+    let arr = this.state.mathAssessments.slice();
+    let index = arr.indexOf(e.target.value)
+    if (index === -1) {
+        arr.push(e.target.value)
+    }
+    else {
+        arr.splice(index, 1);
+    }
+
+    this.setState({ mathAssessments: arr })
+}
 
 render() {
     if (!this.props.classroom) {
@@ -96,10 +109,11 @@ render() {
                 </span>
                 {students}
                 <Modal 
-                    screens={2}
+                    screens={3}
                     addName={"Student"}
                     addFn={this.addStudent}
                     handleChange={this.handleChange}
+                    handleCheckbox={this.handleCheckbox}
                     modalToggle={this.state.modalToggle}
                     toggleModal={this.toggleModal}
                     itemObj={this.state}

@@ -4,14 +4,15 @@ import CheckboxList from './modal-items/CheckboxList';
 import ConfirmAddTeacher from './modal-items/ConfirmAddTeacher';
 import TeacherInput from './modal-items/TeacherInput';
 
-function componentSwitch(activeCrumb, handleChange, handleCheckbox, teacherState) {
+function componentSwitch(activeCrumb, handleChange, handleCheckbox, teacherState, items) {
+  let description = "Please select grades taught (if any)"
  switch(activeCrumb) {
   case 0:
    return <TeacherInput handleChange={handleChange} teacherState={teacherState} />
   case 1:
    return <RadioItems handleChange={handleChange} teacherState={teacherState} />
   case 2:
-   return <CheckboxList handleCheckbox={handleCheckbox} teacherState={teacherState} />
+   return <CheckboxList handleCheckbox={handleCheckbox} items={items} objectState={teacherState} description={description}/>
   case 3: 
    return <ConfirmAddTeacher teacherState={teacherState} />
   default:
@@ -21,9 +22,8 @@ function componentSwitch(activeCrumb, handleChange, handleCheckbox, teacherState
  }
 }
 const AddTeacher = props => {
-
- let { handleChange, activeCrumb, handleCheckbox, teacherState } = props;
- let display = componentSwitch(activeCrumb, handleChange, handleCheckbox, teacherState);
+ let { handleChange, activeCrumb, handleCheckbox, teacherState, items } = props;
+ let display = componentSwitch(activeCrumb, handleChange, handleCheckbox, teacherState, items);
  return (
    <div>
      {display}
