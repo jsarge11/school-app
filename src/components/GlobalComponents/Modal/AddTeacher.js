@@ -12,12 +12,12 @@ function componentSwitch(activeCrumb, handleChange, handleCheckbox, teacherState
   case 1:
    return <RadioItems handleChange={handleChange} teacherState={teacherState} />
   case 2:
-   return <CheckboxList handleCheckbox={handleCheckbox} items={items} objectState={teacherState} description={description}/>
-  case 3: 
+   return <CheckboxList handleCheckbox={handleCheckbox} items={items} objectState={teacherState} description={description} listType="grade"/>
+  case 3:
    return <ConfirmAddTeacher teacherState={teacherState} />
   default:
    return (<div>
-    Nothing to see here. 
+    Nothing to see here.
    </div>)
  }
 }

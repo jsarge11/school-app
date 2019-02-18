@@ -118,8 +118,11 @@
  cursor: pointer;
  width: 100%;
 }
-.checkbox-item {
+.checkbox-item-grade {
  width: 20%;
+ height: 50%;
+}
+.checkbox-item-assessment {
  height: 50%;
 }
 .checkbox-p {
@@ -192,7 +195,13 @@ a {
  flex-wrap: wrap;
  width: 90%;
  justify-content: center;
-
+}
+assessment-wrapper {
+ display: flex;
+ flex-direction: column;
+ width: 90%;
+ justify-content: center;
+ align-items: center;
 }
 .grade-item-wrapper {
  margin: 5px;

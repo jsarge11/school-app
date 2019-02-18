@@ -9,12 +9,12 @@ function componentSwitch(activeCrumb, handleChange, studentState, handleCheckbox
   case 0:
    return <StudentInput handleChange={handleChange} studentState={studentState}/>
   case 1:
-   return <CheckboxList handleCheckbox={handleCheckbox} items={items} objectState={studentState} description={description}/>
-  case 2: 
+   return <CheckboxList handleCheckbox={handleCheckbox} items={items} objectState={studentState} description={description} listType="assessment"/>
+  case 2:
     return <ConfirmAddStudent studentState={studentState}/>
   default:
    return (<div>
-    Nothing to see here. 
+    Nothing to see here.
    </div>)
  }
 }
