@@ -18,8 +18,9 @@ class Modal extends Component {
         activeCrumb: 0
     }
    
-    toggleModal = () => {
-        this.props.toggleModal();
+    toggleModalOff = () => {
+        this.setState({ activeCrumb: 0 })
+        this.props.resetState();
     }
     
     handleEnter = (e) => {
@@ -70,7 +71,7 @@ class Modal extends Component {
     
 
     render() {
-        let { screens, modalToggle, addName, addFn, toggleModal } = this.props;
+        let { screens, modalToggle, addName, addFn } = this.props;
         return (
            <div onKeyDown={(e) => this.handleEnter(e)}>
                {modalToggle ? <div>
@@ -80,7 +81,7 @@ class Modal extends Component {
                         style={{margin: "20px"}}
                         icon={faTimesCircle} 
                         className="close-button"
-                        onClick={() => toggleModal()}
+                        onClick={() => this.toggleModalOff()}
                     />
                  <section className="modal-body">
                  

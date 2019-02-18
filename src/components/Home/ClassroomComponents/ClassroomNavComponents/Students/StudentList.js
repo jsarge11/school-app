@@ -6,10 +6,9 @@ import axios from 'axios';
 import ListItem from '../../../../GlobalComponents/ListItem/ListItem';
 import StudentInformationalComponent from '../../../../GlobalComponents/ListItem/InformationalComponents/StudentInformationalComponent';
 import Modal from '../../../../GlobalComponents/Modal/Modal';
+import { toDBString } from '../../../../../assets/fns/functions'
 
-class StudentList extends Component {
-
-state = {
+let initialState = {
     modalToggle: false,
     name: '',
     username: '',
@@ -19,6 +18,9 @@ state = {
     mathAssessments: [],
     confirmDelete: false
 }
+class StudentList extends Component {
+
+state = initialState;
 
 componentDidMount() {
     axios.get('/students?id=' + this.props.classroom.id).then(res => {
@@ -26,23 +28,31 @@ componentDidMount() {
     })
 }
 toggleModal = () => {
-    this.setState({ modalToggle: !this.state.modalToggle})
+    this.setState({ modalToggle: !this.state.modalToggle, })
+}
+resetState = () => {
+    this.setState(initialState);
 }
 addStudent = () => {
     let newStudent = {};
     this.setState({ addStudent: false })
+    console.log(this.state.mathAssessments)
+    let assessmentString = toDBString(this.state.mathAssessments);
 
     if (!this.state.username) {
         Object.assign(newStudent, this.state, {
-            username: this.state.first_name+this.state.last_name,
-            id: this.props.classroom.id
+            username: this.state.name,
+            classroom_id: this.props.classroom.id
         })
     }
     else {
         Object.assign(newStudent, this.state, {
-            id: this.props.classroom.id
+            classroom_id: this.props.classroom.id
         })
     }
+
+    newStudent = {...newStudent, mathAssessments: assessmentString};
+
     //making state null
     for(let key in this.state) {
         this.setState({ [`${key}`] : '' })
@@ -115,7 +125,7 @@ render() {
                     handleChange={this.handleChange}
                     handleCheckbox={this.handleCheckbox}
                     modalToggle={this.state.modalToggle}
-                    toggleModal={this.toggleModal}
+                    resetState={this.resetState}
                     itemObj={this.state}
                 />
             </div>

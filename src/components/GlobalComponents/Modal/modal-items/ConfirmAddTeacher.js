@@ -1,19 +1,20 @@
 import React from 'react'
 
-function pickRole(admin, teacher, principle) {
+function pickRole(admin, teacher, principal) {
   if (admin) {
     return <span>Admin</span>
   }
   else if (teacher) {
     return <span>Teacher</span>
   }
-  else if (principle) {
-    return <span>Principle</span>
+  else if (principal) {
+    return <span>Principal</span>
   }
 }
 
 const ConfirmAddTeacher = props => {
-  let {admin, teacher, principle, gradesTaught, name, email } = props.teacherState;
+  console.log(props);
+  let {admin, teacher, principal, gradesTaught, name, email } = props.teacherState;
   let displayGrades = gradesTaught.map(item => {
     return <span key={item}>{`${item} `}</span>
   })
@@ -23,7 +24,7 @@ const ConfirmAddTeacher = props => {
 return (
   <div> 
   Confirm Details: <br/>
-  Role: {pickRole(admin, teacher, principle)} <br/>
+  Role: {pickRole(admin, teacher, principal)} <br/>
   Name: {name} <br/>
   Email: {email} <br/>
   Classes Taught: <br/>

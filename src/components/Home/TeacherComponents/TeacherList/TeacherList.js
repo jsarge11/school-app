@@ -8,6 +8,7 @@ import ListItem from '../../../GlobalComponents/ListItem/ListItem';
 import TeacherInformationComponent from '../../../GlobalComponents/ListItem/InformationalComponents/TeacherInformationalComponent'
 
 const initialState = {
+    modalToggle: false,
     pin: '',
     name: '',
     email: '',
@@ -17,7 +18,7 @@ const initialState = {
     gradesTaught: []
 }
 class TeacherList extends Component {
-    state = {...initialState}
+    state = initialState;
 
 componentDidMount() {
     axios.get('/teachers?id=' + this.props.user.school_id).then(res => {
@@ -58,8 +59,11 @@ handleCheckbox = (e) => {
 }
 
 toggleModal = () => {
-    this.setState({initialState});
-    this.setState({ modalToggle: !this.state.modalToggle})
+    this.setState({ modalToggle: !this.state.modalToggle, })
+}
+
+resetState = () => {
+    this.setState(initialState);
 }
 
 addTeacher = () => {
@@ -127,10 +131,10 @@ render() {
                 screens={4} 
                 addName="Teacher" 
                 modalToggle={this.state.modalToggle}
-                toggleModal={this.toggleModal} 
                 handleCheckbox={this.handleCheckbox}
                 handleChange={this.handleChange}
                 addFn={this.addTeacher}
+                resetState={this.resetState}
                 itemObj={this.state}
             />
            </div>
