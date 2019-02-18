@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatUsername } from '../../../../assets/fns/functions'
 
 const StudentInput = props => {
  let {name, username, pin, grade} = props.studentState;
@@ -12,7 +13,7 @@ const StudentInput = props => {
     onChange={(e) => props.handleChange("name", e)} />
 
    <input type="text"
-    placeholder="Username"
+    placeholder={formatUsername(name) || "Username"}
     className="user-input"
     value={username} 
     onChange={(e) => props.handleChange("username", e)} />

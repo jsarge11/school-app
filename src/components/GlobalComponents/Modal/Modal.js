@@ -18,7 +18,12 @@ class Modal extends Component {
         activeCrumb: 0
     }
    
-    toggleModalOff = () => {
+    confirmAdd = () => {
+        this.setState({ activeCrumb: 0 })
+        this.props.addFn();
+        this.props.resetState();
+    }
+    cancelAdd = () => {
         this.setState({ activeCrumb: 0 })
         this.props.resetState();
     }
@@ -71,7 +76,7 @@ class Modal extends Component {
     
 
     render() {
-        let { screens, modalToggle, addName, addFn } = this.props;
+        let { screens, modalToggle, addName } = this.props;
         return (
            <div onKeyDown={(e) => this.handleEnter(e)}>
                {modalToggle ? <div>
@@ -81,7 +86,7 @@ class Modal extends Component {
                         style={{margin: "20px"}}
                         icon={faTimesCircle} 
                         className="close-button"
-                        onClick={() => this.toggleModalOff()}
+                        onClick={() => this.cancelAdd()}
                     />
                  <section className="modal-body">
                  
@@ -90,7 +95,7 @@ class Modal extends Component {
                 {screens <= 1 ? 
                     <span className="breadcrumb-wrapper">
                         <AddButton 
-                            fn={addFn} 
+                            fn={this.confirmAdd} 
                             addName={addName} />
                     </span> 
                     :
@@ -99,7 +104,7 @@ class Modal extends Component {
                             crumbs={screens}
                             nextPage={this.nextPage}
                             prevPage={this.prevPage}
-                            addFn={addFn}
+                            addFn={this.confirmAdd}
                             listCategory={addName}
                         />
                 }

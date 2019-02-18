@@ -64,7 +64,6 @@ class ClassroomList extends Component {
 
         axios.post(`/classrooms?id=${this.props.user.id}`, newObj).then(res => {
             this.props.setClassroomList(res.data);
-            this.toggleModal();
         }).catch(error => console.log(error))
         
         // }
@@ -126,7 +125,7 @@ class ClassroomList extends Component {
                     addFn={this.addClassroom}
                     modalToggle={this.state.modalToggle}
                     handleChange={this.handleChange}
-                    toggleModal={this.toggleModal} 
+                    resetState={this.toggleModal} 
                 />
             </div>
         )

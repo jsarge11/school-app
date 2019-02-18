@@ -6,7 +6,7 @@ import axios from 'axios';
 import ListItem from '../../../../GlobalComponents/ListItem/ListItem';
 import StudentInformationalComponent from '../../../../GlobalComponents/ListItem/InformationalComponents/StudentInformationalComponent';
 import Modal from '../../../../GlobalComponents/Modal/Modal';
-import { toDBString } from '../../../../../assets/fns/functions'
+import { toDBString, formatUsername } from '../../../../../assets/fns/functions'
 
 let initialState = {
     modalToggle: false,
@@ -36,12 +36,12 @@ resetState = () => {
 addStudent = () => {
     let newStudent = {};
     this.setState({ addStudent: false })
-    console.log(this.state.mathAssessments)
     let assessmentString = toDBString(this.state.mathAssessments);
-
+   
     if (!this.state.username) {
+        let username = formatUsername(this.state.name);
         Object.assign(newStudent, this.state, {
-            username: this.state.name,
+            username: username,
             classroom_id: this.props.classroom.id
         })
     }
@@ -54,9 +54,7 @@ addStudent = () => {
     newStudent = {...newStudent, mathAssessments: assessmentString};
 
     //making state null
-    for(let key in this.state) {
-        this.setState({ [`${key}`] : '' })
-    }
+   this.setState(initialState);
 
     axios.post('/students', newStudent).then(res => {
         this.props.setStudentList(res.data);
@@ -100,7 +98,6 @@ render() {
     }
     else {
         let students = this.props.studentList.map(item => {
-            console.log(item);
             return (
              <ListItem 
                 key={item.id}

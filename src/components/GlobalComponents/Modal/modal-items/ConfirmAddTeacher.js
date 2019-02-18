@@ -13,7 +13,6 @@ function pickRole(admin, teacher, principal) {
 }
 
 const ConfirmAddTeacher = props => {
-  console.log(props);
   let {admin, teacher, principal, gradesTaught, name, email } = props.teacherState;
   let displayGrades = gradesTaught.map(item => {
     return <span key={item}>{`${item} `}</span>

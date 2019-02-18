@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import Crumbs from './Crumbs'
 import AddButton from './AddButton'
 export default class BreadCrumbs extends Component {
-  state = {
 
-  }
-  
   componentSwitch = (crumbsArr) => {
     let { crumbs, active, addFn, nextPage, prevPage, listCategory } = this.props;
     if (crumbs === active + 1) {

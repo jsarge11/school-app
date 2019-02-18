@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { formatUsername } from '../../../../assets/fns/functions'
 
 const ConfirmAddStudent = props => {
   let {name, username, pin, points, grade, mathAssessments } = props.studentState;
@@ -13,7 +13,7 @@ return (
   <div> 
   Confirm Details: <br/>
   Name: {name} <br/>
-  Username: {username} <br/>
+  Username: {username || formatUsername(name)} <br/>
   Pin: {pin} <br/>
   Grade: {grade} <br/>
   Points: {points} <br/>

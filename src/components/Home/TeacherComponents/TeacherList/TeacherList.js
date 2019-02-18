@@ -59,7 +59,7 @@ handleCheckbox = (e) => {
 }
 
 toggleModal = () => {
-    this.setState({ modalToggle: !this.state.modalToggle, })
+    this.setState({ modalToggle: true })
 }
 
 resetState = () => {
@@ -80,7 +80,6 @@ addTeacher = () => {
     }
     axios.post('/teachers', teacherObj).then(response => {
        setTeacherList(response.data);
-       this.toggleModal();
     }).catch(error => console.log(error))
 }
 deleteTeacher = (id) => {

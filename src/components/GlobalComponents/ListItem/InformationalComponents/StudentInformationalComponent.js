@@ -5,7 +5,7 @@ const StudentInformationalComponent = props => {
   let { item } = props;
   let words = toAssessmentWords(item.assessments);
   let assessments = words.map(item => {
-    return <span>{item}</span>
+    return <span key={item}>{item}</span>
   })
   return (
     <section className="item-name-text-wrapper">
@@ -15,16 +15,20 @@ const StudentInformationalComponent = props => {
         <em>{item.name}</em>
       </p>
       <p className="student-info-text-wrapper"> 
-        <strong>PIN: &nbsp; </strong>
-        <em>{item.pin} </em>
+        <strong>Username: &nbsp; </strong>
+        <em>{item.username} </em>
+      </p> 
+      <p className="student-info-text-wrapper"> 
+        <strong>Assessments: &nbsp; </strong>
+        <em>{assessments} </em>
       </p> 
       <p className="student-info-text-wrapper"> 
         <strong>Grade: &nbsp; </strong>
         <em>{item.grade} </em>
       </p> 
       <p className="student-info-text-wrapper"> 
-        <strong>Assessments: &nbsp; </strong>
-        <em>{assessments} </em>
+        <strong>PIN: &nbsp; </strong>
+        <em>{item.pin} </em>
       </p> 
     </span>
   </section>

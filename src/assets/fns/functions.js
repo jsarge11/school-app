@@ -26,12 +26,6 @@ export function toDBString(arr) {
     return numArr.join('');
 }
 
-console.log(toDBString(["Division"]));
-console.log(toDBString(["Division", "Addition"]));
-console.log(toDBString(["Division", "Addition", "Subtraction"]));
-console.log(toDBString(["Division", "Addition", "Subtraction", "Multiplication"]));
-console.log(toDBString(["Division", "Addition", "Subtracon", ""]));
-
 export function toAssessmentWords(arr) {
     let words = arr.map(item => {
         switch(item) {
@@ -48,4 +42,14 @@ export function toAssessmentWords(arr) {
         }
     })
     return words;
+}
+
+export function formatUsername(str) {
+    let newStr = '';
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] !== ' ') {
+            newStr += str[i].toLowerCase();
+        }
+    }
+    return newStr;
 }
