@@ -4,6 +4,7 @@
 }
 .student-info-text-wrapper {
  display: flex;
- min-width: 40%;
- max-width: 40%;
+ min-width: 33%;
+ max-width: 33%;
+ font-size: 11px;
 }

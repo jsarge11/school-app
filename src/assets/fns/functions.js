@@ -1,8 +1,6 @@
 export function toDBString(arr) {
-    console.log(arr);
     let numArr = [];
     numArr.push(`{`);
-    console.log(arr.length)
     numArr = arr.map((item, i, array) => {
         let prefix = '';
         let postfix = ', ';
@@ -20,7 +18,7 @@ export function toDBString(arr) {
             case 'Addition':
                 return prefix + '3' + postfix;
             case 'Subtraction':
-                return prefix + '4' + postfix;
+                return prefix + '5' + postfix;
             default: 
                 return prefix + -1 + postfix;
         }
@@ -33,3 +31,21 @@ console.log(toDBString(["Division", "Addition"]));
 console.log(toDBString(["Division", "Addition", "Subtraction"]));
 console.log(toDBString(["Division", "Addition", "Subtraction", "Multiplication"]));
 console.log(toDBString(["Division", "Addition", "Subtracon", ""]));
+
+export function toAssessmentWords(arr) {
+    let words = arr.map(item => {
+        switch(item) {
+            case 1:
+                return 'Multiplication ';
+            case 2: 
+                return 'Division ';
+            case 3: 
+                return 'Addition ';
+            case 5:
+                return 'Subtraction '
+            default:
+                return ''
+        }
+    })
+    return words;
+}

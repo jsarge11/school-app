@@ -100,6 +100,7 @@ render() {
     }
     else {
         let students = this.props.studentList.map(item => {
+            console.log(item);
             return (
              <ListItem 
                 key={item.id}
