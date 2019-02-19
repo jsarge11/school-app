@@ -3,7 +3,7 @@ import './studentgrades.css'
 import { connect } from 'react-redux'
 import { setStudentList } from '../../../../../../ducks/reducer'
 import axios from 'axios';
-import ListItem from 
+import ListItem from
 '../../../../../GlobalComponents/ListItem/ListItem'
 import StudentGradeInformationalComponent from '../../../../../GlobalComponents/ListItem/InformationalComponents/StudentGradeInformationalComponent'
 
@@ -13,37 +13,38 @@ class StudentGrades extends Component {
         promises: [],
         studentData: []
     }
-componentDidMount() {
+componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
         let promises = [];
         let { studentList } = this.props;
-        console.log(studentList);
-
         //bringing in data for each student
-
+        console.log(studentList)
         studentList.forEach(item => {
             promises.push(axios.get(`/math/score?id=${item.id}`))
         })
+        console.log(promises);
         axios.all(promises).then(res => {
             this.setState({ studentData: res })
         })
+    }
 }
 
-deleteStudent(id) {
-    console.log(id);
-}
 componentWillUnmount() {
     this.props.setStudentList([]);
 }
 render() {
-        let students = this.props.studentList.map((item, i) => 
+    console.log(this.state.studentData);
+
+        let students = this.props.studentList.map((item, i) =>
         {
             return (
-                <ListItem 
+                <ListItem
                     key={item.id}
                     item={item}
                     deleteFn={this.deleteStudent}
                     InformationalComponent={<StudentGradeInformationalComponent item={item}
-                />} 
+                    hideDelete={true}
+                />}
                 />
             )
         })

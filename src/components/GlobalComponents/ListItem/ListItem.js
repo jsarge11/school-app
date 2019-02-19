@@ -26,8 +26,8 @@ class ListItem extends Component {
     }
 
     render() {
-        let { item } = this.props;
-        
+        let { item, hideDelete } = this.props;
+
         return (
             <article className="item-wrapper">
                 {!this.state.editToggle ?
@@ -52,7 +52,11 @@ class ListItem extends Component {
                     </div>
                 }
                 {/* should teachers be able to delete students? */}
-                {!item.principal ?<p className="item-button" onClick={() => this.props.deleteFn(item.id, item.classroom_id)}>Delete</p> : ''}
+                {!item.principal && !hideDelete
+                    ?
+                <p className="item-button" onClick={() => this.props.deleteFn(item.id, item.classroom_id)}>Delete</p>
+                    :
+                ''}
             </article>
         )
     }

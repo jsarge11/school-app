@@ -2,7 +2,6 @@ import React from 'react'
 
 const RadioItems = props => {
    let { admin, principal, teacher } = props.teacherState;
-   console.log(admin, principal, teacher);
  return (
   <span className="modal-radio">
   <p>Select New Employee Role: </p>
