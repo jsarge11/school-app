@@ -1,0 +1,29 @@
+#student-grade-wrapper {
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+ margin: 2% 4%;
+}
+.student-row {
+ display: grid;
+ grid-template-columns: repeat(10, 1fr);
+ grid-template-rows: 50px;
+ width: 50%;
+}
+.student-box {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border: 1px solid black;
+ width: 50px;
+ height: 50px;
+}
+.student-date {
+ transform: rotate(-35deg);
+ position: absolute;
+ top: -41px;
+ left: 14px;
+}
+.box-holder {
+ position: relative;
+}
