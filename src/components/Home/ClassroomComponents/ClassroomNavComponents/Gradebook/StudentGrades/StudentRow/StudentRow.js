@@ -19,13 +19,13 @@ const StudentRow = props => {
  })
 
  return (
-  <div>
+  <span className="row-wrapper">
    {displayScores[0] ? 
     <div className="student-row">
      {displayScores} 
    </div>
    : ''}
-   </div>
+   </span>
  )
 }
 export default StudentRow

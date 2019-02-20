@@ -7,7 +7,7 @@ import StudentRow from './StudentRow/StudentRow';
 
 class StudentGrades extends Component {
     state = {
-        studentData: []
+        studentData: [],
     }
 componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
@@ -29,10 +29,13 @@ render() {
         return <StudentRow key={i} item={item}/>
     })
         return (
-           <div id="student-grade-wrapper">
-                 <h1>10 Most Recent Scores By Student</h1>
-                {rows}
-           </div>
+            <div>
+                <h1 style={{textAlign: 'center'}}>Scores for {this.props.assessmentType}</h1>
+            </div>
+        //    <div id="student-grade-wrapper">
+        //          <h1>10 Most Recent Scores By Student</h1>
+        //         {rows}
+        //    </div>
         )
     }
 }

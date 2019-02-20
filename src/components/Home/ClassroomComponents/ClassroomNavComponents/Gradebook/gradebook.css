@@ -1,3 +1,7 @@
 #pin-edit {
     cursor: pointer;
 }
+#gradebook-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
