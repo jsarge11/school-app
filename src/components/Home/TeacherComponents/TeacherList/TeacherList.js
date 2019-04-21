@@ -119,9 +119,9 @@ render() {
     })
         return (
            <div id="teacher-wrapper">
-           <h1>Home</h1>
+           <h1 style={{paddingLeft: 20}}>Home</h1>
            <header id="list-header">
-                    <h2> Teachers at {school_name} </h2>
+                    <h2> Teachers at {school_name || "your school."} </h2>
                     <button className="item-button" onClick={() => this.toggleModal()}> Add Teacher </button>
             </header>
            

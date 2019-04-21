@@ -1,17 +1,24 @@
 .item-button {
- margin: 0px 10px;
- border: none;
- background: navy;
- color: white;
- border-radius:10px;
- cursor: pointer;
- min-width: 40px;
- font-size: 14px;
- padding: 5px 10px 10px 10px;
+    margin: 0px 10px;
+    border: none;
+    background: navy;
+    color: white;
+    border-radius:10px;
+    cursor: pointer;
+    min-width: 40px;
+    font-size: 14px;
+    padding: 5px 10px 10px 10px;
+    height: 100%;
+    transition: all .2s ease;
  }
  .item-button:hover {
- box-shadow: rgba(0,0,0,.25) 0px 0px 10px 1px;
+    color: navy;
+    background: white;
+    box-shadow: rgba(0,0,0,.25) 0px 0px 10px 1px;
+    transition: all .2s ease;
  }
  .item-button:active {
- box-shadow: none;
+    box-shadow: none;
+    background: navy;
+    color: white;
  }

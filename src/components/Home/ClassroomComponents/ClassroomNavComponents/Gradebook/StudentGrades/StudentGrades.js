@@ -14,7 +14,7 @@ componentDidUpdate(prevProps) {
         let promises = [];
         let { studentList } = this.props;
         //bringing in data for each student
-
+        
         studentList.forEach(item => {
             promises.push(axios.get(`/math/score/${item.id}?limit=10`))
         })
@@ -25,17 +25,21 @@ componentDidUpdate(prevProps) {
 }
 
 render() {
+    console.log('student data', this.state.studentData)
     let rows = this.state.studentData.map((item, i) => {
-        return <StudentRow key={i} item={item}/>
+        let name = item.data[0] ? item.data[0].name : null;
+        return <StudentRow key={i} item={item} name={name}/>
     })
         return (
-            <div>
-                <h1 style={{textAlign: 'center'}}>Scores for {this.props.assessmentType}</h1>
-            </div>
-        //    <div id="student-grade-wrapper">
-        //          <h1>10 Most Recent Scores By Student</h1>
-        //         {rows}
-        //    </div>
+            <React.Fragment>
+                <div>
+                    <h1 style={{textAlign: 'center'}}>Scores for {this.props.assessmentType}</h1>
+                </div>
+                <div id="student-grade-wrapper">
+                        <h1>10 Most Recent Scores By Student</h1>
+                        {rows}
+                </div>
+            </React.Fragment>
         )
     }
 }
